@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+
+<!-- Mirrored from htmldemo.net/elehaus/elehaus//login_signup by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 13:41:36 GMT -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Mobile verification</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png">
+
+    <!-- CSS (Font, Vendor, Icon, Plugins & Style CSS files) -->
+
+    <!-- Font CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap"
+        rel="stylesheet">
+
+    <!-- Vendor CSS (Bootstrap & Icon Font) -->
+    <link rel="stylesheet" href="/user_files/css/vendor/bootstrap.min.css">
+
+    <!-- Plugins CSS (All Plugins Files) -->
+    <link rel="stylesheet" href="/user_files/css/plugins/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/user_files/css/plugins/font-awesome.min.css">
+    <link rel="stylesheet" href="/user_files/css/plugins/simple-line-icons.css">
+    <link rel="stylesheet" href="/user_files/css/plugins/fancybox.min.css">
+    <link rel="stylesheet" href="/user_files/css/plugins/nice-select.css">
+    <link rel="stylesheet" href="/user_files/css/plugins/range-slider.css">
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="/user_files/css/style.css">
+
+</head>
+
+<body>
+    <div class="wrapper">        
+        <div class="header-area d-none d-lg-block">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-auto">                       
+                    </div>
+                    <div class="col-auto d-none d-lg-block ms-auto me-n3 pe-0">
+                        <div class="header-navigation ps-6">
+                            <ul class="main-nav">
+                                <li class="main-nav-item"><a class="main-nav-link" href="/">Home</a>
+                                </li>
+                                <li class="main-nav-item"><a class="main-nav-link" href="">DSLR</a>
+                                </li>
+                                <li class="main-nav-item"><a class="main-nav-link" href="">Mirrorless</a>
+                                </li>
+                                <li class="main-nav-item"><a class="main-nav-link" href="">Action</a>
+                                </li>
+                                <li class="main-nav-item"><a class="main-nav-link" href=>Instant</a>
+                                </li>
+                                <li class="main-nav-item"><a class="main-nav-link" href=>Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="header-action">
+                            <button class="btn-search-menu d-md-none" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#AsideOffcanvasSearch" aria-controls="AsideOffcanvasSearch">
+                                <span class="search-icon">
+                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" />
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </header>
+        <!--== End Header Wrapper ==-->
+
+        <!--== Start Page Header Area Wrapper ==-->
+        <div class="page-header-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="page-header-content">
+                            <h2 class="page-header-title">Verify it's you</h2>
+                            <!-- <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html">Home //</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Login-Register</li>
+                                </ol> -->
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                         <div class="page-header-thumb">
+                                <img src="/images/page-title.png" alt="Image-HasTech" width="546" height="281">
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--== End Page Header Area Wrapper ==-->
+
+        <!--== Start Login Wrapper ==-->
+        <div class="login-register-area section-space">
+            <div class="container">
+                <div class="row">
+                    <div style="border:none ;" class="col-md-5 login-register-border">
+                        <div class="login-register-content">
+                            <div class="login-register-title mb-30">
+                                <h4>Enter the four digit OTP sent to your number</h4>
+                            </div>
+                            <div class="login-register-style login-register-pr">
+                                <form action="/checkOtp" method="post">
+                                    <div class="login-register-input">
+                                        <input maxlength="4" type="tel" name="otp" placeholder="OTP" required>
+                                    {{#if wrongOtp}}
+                                    <p class="text-danger my-2 mx-1 fw-bold">Entered OTP is incorrect</p>
+                                    {{/if}}
+                                    </div>
+                                    <div class="remember-me-btn">
+                                        <!-- <input id="remember-me-checkbox" type="checkbox"> -->
+                                        <!-- <label for="remember-me-checkbox">Remember me</label> -->
+                                    </div>
+                                    <div class="btn-register">
+                                        <button type="submit" class="btn-register-now">Verify & Continue to homepage</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+        <!--== End Login Wrapper ==-->
+
+        </main>
+
+
+        <!--Start Footer Area Wrapper ==-->
+        <footer class="footer-area">
+            <div class="container">             
+
+                
+            </div>
+        </footer>
+        <!--== End Footer Area Wrapper ==-->       
+        <!--== Start Side Menu ==-->
+
+    </div>
+    <!--== Wrapper End ==-->
+
+    <!-- JS Vendor, Plugins & Activation Script Files -->
+
+    <!-- Vendors JS -->
+    <script src="/user_files/js/vendor/modernizr-3.11.7.min.js"></script>
+    <script src="/user_files/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="/user_files/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+    <script src="/user_files/js/vendor/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugins JS -->
+    <script src="/user_files/js/plugins/swiper-bundle.min.js"></script>
+    <script src="/user_files/js/plugins/fancybox.min.js"></script>
+    <script src="/user_files/js/plugins/jquery.nice-select.min.js"></script>
+    <script src="/user_files/js/plugins/jquery.countdown.min.js"></script>
+    <script src="/user_files/js/plugins/isotope.pkgd.min.js"></script>
+
+    <!-- Custom Main JS -->
+    <script src="/user_files/js/main.js"></script>
+
+</body>
+
+
+<!-- Mirrored from htmldemo.net/elehaus/elehaus//login_signup by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 13:41:36 GMT -->
+
+</html>

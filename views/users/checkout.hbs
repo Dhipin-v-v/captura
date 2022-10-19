@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Captura-The camera store</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+
+    <!-- Font CSS -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap"
+        rel="stylesheet">
+
+    <!-- Vendor CSS (Bootstrap & Icon Font) -->
+    <link rel="stylesheet" href="/user_files/css/vendor/bootstrap.min.css">
+
+    <!-- Plugins CSS (All Plugins Files) -->
+    <link rel="stylesheet" href="/user_files/css/plugins/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/user_files/css/plugins/font-awesome.min.css">
+    <link rel="stylesheet" href="/user_files/css/plugins/simple-line-icons.css">
+    <link rel="stylesheet" href="/user_files/css/plugins/fancybox.min.css">
+    <link rel="stylesheet" href="/user_files/css/plugins/nice-select.css">
+    <link rel="stylesheet" href="/user_files/css/plugins/range-slider.css">
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="/user_files/css/style.css">
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="header-area d-lg-block">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                    </div>
+                    <div class="col-auto d-lg-block ms-auto me-n3 pe-0">
+                        <div class="header-navigation ps-6">
+                            <ul class="main-nav">
+                                <li class="main-nav-item"><a class="main-nav-link" href="/shop_by_category/1">Shop by
+                                        category</a></li>
+                                <li class="main-nav-item"><a class="main-nav-link" href=>Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="header-action">
+                            <button class="btn-search-menu d-md-none" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#AsideOffcanvasSearch" aria-controls="AsideOffcanvasSearch">
+                                <span class="search-icon">
+                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" />
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </header>
+        <!--== End Header Wrapper ==-->
+        <main class="main-content">
+            <!--== Start Page Header Area Wrapper ==-->
+            <div class="page-header-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="page-header-content">
+                                <h2 class="page-header-title">Checkout</h2>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="page-header-thumb">
+                                <img src="/images/page-title.png" alt="Image-HasTech" width="546"
+                                    height="281">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--== End Page Header Area Wrapper ==-->
+
+            <!--== Start Product Filter Area Wrapper ==-->
+            <div class="section-space shop-checkout-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="checkout-coupon-wrap mb-8 mb-lg-10 pb-lg-2">
+                                <p class="cart-page-title">Have a coupon? <a class="checkout-coupon-active"
+                                        href="#/">Click here</a></p>
+                                <form class="checkout-coupon-content" action="#">
+                                    <div id="couponApplyDiv">
+                                        <p>Enter your coupon code below.</p>
+                                        <input id="entered-coupon" type="text" placeholder="Coupon code">
+                                        {{!-- <h5 id="display-coupon" class="pb-2"><span id="applied" style="font-weight: normal"></span></h5> --}}
+                                        <h5 id="display-coupon" class="pb-2"></h5>
+                                        <button onclick="applyCoupon()" type="button">Apply coupon</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="p-5  d-flex flex-column">
+                                <div class="d-flex justify-content-start align-items-start">
+                                    <h4 class="fw-bold mb-0 text-black mb-1">Delivery address
+                                        <hr>
+                                    </h4>
+                                </div>
+
+                                <div id="address-refresh" class="row mb-4">
+                                    <div>
+                                        <button style="border-radius: 10px; width:50%;" type="button"
+                                            class="btn btn-primary mx-5" data-bs-toggle="modal"
+                                            data-bs-target="#addAddressModal">Add
+                                            a new address</button>
+                                    </div>
+                                    <input id="hiddenAddress" hidden type="text">
+                                    {{#each address}}
+                                    <div class="">
+                                        <div class="col-12 col-sm-12 col-md-12">
+                                            <div class="form-check">
+                                                <div class="address-card card col-12 col-md-8 col-lg-8 m-2">
+                                                    <div class="card-body">
+                                                        <input onchange="selectAddress('{{this._id}}')" name="address"
+                                                            id="address" required="" class="form-check-input"
+                                                            type="radio" novalidate="novalidate">
+                                                        <label class="form-check-label" for="flexRadioDefault1">
+                                                            <h5 class="card-title">{{this.name}}</h5>
+                                                            <p class="card-text">{{this.house}} <br> {{this.locality}}
+                                                                <br> {{this.area}} <br> {{this.landmark}} <br>
+                                                                {{this.pincode}}
+                                                            </p>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div id="order-area-refresh" class="your-order-area mt-10 mt-lg-0">
+                                <h4>Your order summary</h4>
+                                <div class="your-order-wrap">
+                                    <div class="your-order-info-wrap">
+                                        <div class="your-order-title">
+                                            <h6>Product <span>Subtotal</span></h6>
+                                        </div>
+                                        <div class="your-order-product">
+                                            <ul>
+                                                {{#each cart}}
+                                                <li>{{this.product.name}} × {{this.quantity}}
+                                                    <span>₹{{multiply this.product.selling this.quantity}} </span>
+                                                </li>
+                                                {{/each}}
+                                            </ul>
+                                        </div>
+
+                                        <div class="your-order-product">
+                                            <ul>
+                                                <li>Shipping<span>₹50.00 </span></li>
+                                                <li>Discount<span id="discount-change">₹00.00</span></li>
+                                            </ul>
+                                        </div>
+                                        {{!-- <div class="your-order-subtotal">
+                                            <h3>Subtotal <span>$617.59</span></h3>
+                                        </div> --}}
+                                        <div class="your-order-total">
+                                            <h3>Total <span id="total-change">₹{{add total 50}} </span></h3>
+                                        </div>
+                                    </div>
+                                    <div class="payment-method">
+                                        <div class="pay-top sin-payment">
+                                            <input id="payment-method-3" class="input-radio" type="radio"
+                                                value="cod" name="payment_method">
+                                            <label for="payment-method-3">Cash on delivery </label>
+                                            <div class="payment-box payment_method_bacs">
+                                                <p>Pay with cash upon delivery. </p>
+                                            </div>
+                                        </div>
+                                        <div class="pay-top sin-payment sin-payment-3">
+                                            <input id="payment-method-4" class="input-radio" type="radio"
+                                                value="prepaid" name="payment_method">
+                                            <label for="payment-method-4">Prepaid<img alt=""
+                                                    src="images/razorpay.jpg" width="50"
+                                                    height="23"></label>
+                                            <div class="payment-box payment_method_bacs">
+                                                <p>Pay via Razorpay; you can pay with your credit card if you don’t have
+                                                    a
+                                                    PayPal account.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="place-order">
+                                    <button onclick="placeOrder()" style="border-radius: 10px; width: 100%" type="button"
+                                        class="btn btn-primary">Place order</button>
+                                </div>
+                                {{!-- <a style="" onclick="placeOrder()">Place Order</a> --}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <!--== End Checkout Area Wrapper ==-->
+    <div class="modal fade" id="addAddressModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content rounded-10">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add a new address</h5>
+                    {{!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    --}}
+                </div>
+                <div class="modal-body">
+                    <form id="addressForm">
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Name</label>
+                            <input type="text" name="name" class="form-control" id="form-name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">House name / flat / building</label>
+                            <input type="text" name="house" class="form-control" id="form-house">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Locality</label>
+                            <input type="text" name="locality" class="form-control" id="form-locality" ></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Area or street</label>
+                            <input type="text" name="area" class="form-control" id="form-area" ></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Landmark</label>
+                            <input type="text" name="landmark" class="form-control" id="form-landmark" ></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Pincode</label>
+                            <input type="tel" name="pincode" class="form-control" maxlength="6" id="form-pincode"></input>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">                    
+                    <button data-bs-dismiss="modal" onclick="addAddress()" style="border-radius: 15px; min-width:auto" id="closemodal"
+                        type="button" class="btn btn-primary">Add
+                        address</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </main>
+    </div>
+    <!--== End Product Filter Area Wrapper ==-->
+
+
+    </main>
+    <!--== Start Footer Area Wrapper ==-->
+    <footer class="footer-area">
+        <div class="container">
+            <div class="footer-bottom">
+            </div>
+        </div>
+    </footer>
+
+    <!--== End Footer Area Wrapper ==-->
+    <!-- Vendors JS -->
+    <script src="/user_files/js/vendor/modernizr-3.11.7.min.js"></script>
+    <script src="/user_files/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="/user_files/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+    <script src="/user_files/js/vendor/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugins JS -->
+    <script src="/user_files/js/plugins/swiper-bundle.min.js"></script>
+    <script src="/user_files/js/plugins/fancybox.min.js"></script>
+    <script src="/user_files/js/plugins/jquery.nice-select.min.js"></script>
+    <script src="/user_files/js/plugins/jquery.countdown.min.js"></script>
+    <script src="/user_files/js/plugins/isotope.pkgd.min.js"></script>
+    <script src="/user_files/js/plugins/range-slider.js"></script>
+
+    <!-- Custom Main JS -->
+    <script src="/user_files/js/main.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
+
+    <script>
+
+        $("#addressForm").validate({
+            rules: {
+                name: {
+                    required: true
+                },
+                house: {
+                    required: true
+                },
+                locality: {
+                    required:true 
+                },
+                area: {
+                    required: true
+                },
+                landmark:{
+                    required: true
+                },
+                pincode:{
+                    digits: true,
+                    minlength: 6
+                }
+            },
+            messages: {
+                name: {
+                    required: 'Enter a name'                    
+                },
+                house: {
+                    required: 'Required'
+                },
+                locality: {
+                    required: 'Required'
+                },
+                area: {
+                    required: 'Required'
+                },
+                landmark:{
+                    required: 'Required'
+                },
+                pincode:{
+                    digits: 'Enter numbers only',
+                    minlength: 'Pincode must have 6 numbers'
+                }
+            }
+        })
+
+
+    </script>
+</body>
+
+
+<!-- Mirrored from htmldemo.net/elehaus/elehaus/shop.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 13:41:36 GMT -->
+
+</html>

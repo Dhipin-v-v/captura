@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Captura-The camera store</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png">
+
+    <!-- Font CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap"
+        rel="stylesheet">
+
+    <!-- Vendor CSS (Bootstrap & Icon Font) -->
+    <link rel="stylesheet" href="/user_files/css/vendor/bootstrap.min.css">
+
+    <!-- Plugins CSS (All Plugins Files) -->
+    <link rel="stylesheet" href="/user_files/css/plugins/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/user_files/css/plugins/font-awesome.min.css">
+    <link rel="stylesheet" href="/user_files/css/plugins/simple-line-icons.css">
+    <link rel="stylesheet" href="/user_files/css/plugins/fancybox.min.css">
+    <link rel="stylesheet" href="/user_files/css/plugins/nice-select.css">
+    <link rel="stylesheet" href="/user_files/css/plugins/range-slider.css">
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="/user_files/css/style.css">
+
+</head>
+
+<body>
+    <div class="wrapper">        
+       <div class="header-area d-lg-block">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                    </div>
+                    <div class="col-auto d-lg-block ms-auto me-n3 pe-0">
+                        <div class="header-navigation ps-6">
+                            <ul class="main-nav">
+                                <li class="main-nav-item"><a class="main-nav-link" href="/shop_by_category/1">Shop by
+                                        category</a></li>  
+                                <li class="main-nav-item"><a class="main-nav-link" href=>Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="header-action">
+                            <button class="btn-search-menu d-md-none" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#AsideOffcanvasSearch" aria-controls="AsideOffcanvasSearch">
+                                <span class="search-icon">
+                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" />
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </header>
+        <!--== End Header Wrapper ==-->
+        <main class="main-content">
+            <!--== Start Page Header Area Wrapper ==-->
+            <div class="page-header-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="page-header-content">
+                                <h2 class="page-header-title">Wishlist</h2>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="page-header-thumb">
+                                <img src="/images/page-title.png" alt="Image-HasTech" width="546"
+                                    height="281">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--== End Page Header Area Wrapper ==-->
+
+            <div style="min-height: 100vh;" class="product-area section-two-space">
+                <div class="product-area">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="cart-table-wrap">
+                                    <div id="wish-refresh" class="table-responsive">
+                                        <table class="wishlist-table-content">
+                                            <thead>
+                                                <tr>
+                                                    <th class="width-remove"></th>
+                                                    <th class="width-thumbnail"></th>
+                                                    <th class="width-name">Product</th>
+                                                    <th class="width-price"> Price </th>
+                                                    <th class="width-stock-status"> Stock status </th>
+                                                    <th class="width-wishlist-cart"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {{#each data}}
+                                                <tr>
+                                                    {{!-- <td class="product-remove"><a href="/delete_from_wishlist/{{this.product._id}}">×</a></td> --}}
+                                                    <td class="product-remove"><a onclick="deleteFromWishlist('{{this.product._id}}')" >×</a></td>
+                                                    {{!-- <td><button onclick="deleteFromWishlist('{{this.product._id}}')" type="button" class="btn-close">X</button></td> --}}
+                                                    <td class="product-thumbnail">
+                                                        <a href=""><img src="images/products/{{this.product.images.[0]}}" alt="Image"
+                                                                width="96" height="96"></a>
+                                                    </td>
+                                                    <td class="product-name">
+                                                        <h5><a href="/product/{{this.product._id}}">{{this.product.name}}</a></h5>
+                                                    </td>
+                                                    <td class="product-price"><span class="amount">₹{{this.product.selling}}</span></td>
+                                                    <td class="stock-status">
+                                                        <span><i class="fa fa-check"></i> In Stock</span>
+                                                    </td>
+                                                    <td><button onclick="addToCart('{{this.product._id}}')" class="wishlist-cart2">Add to cart</button></td>
+                                                    {{!-- <td class="wishlist-cart"><a >Add to Cart</a></td> --}}
+                                                </tr>
+                                                {{/each}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                            </div>
+                        </div>                      
+                    </div>
+                </div>
+            </div>
+
+            <!--== Start Product Filter Area Wrapper ==-->
+
+    </div>
+    <!--== End Product Filter Area Wrapper ==-->
+
+    </main>
+
+
+    <!--== Start Footer Area Wrapper ==-->
+    <footer class="footer-area">
+        <div class="container">
+            <div class="footer-bottom">
+            </div>
+        </div>
+    </footer>
+    <!--== End Footer Area Wrapper ==-->
+    <!-- Vendors JS -->
+    <script src="/user_files/js/vendor/modernizr-3.11.7.min.js"></script>
+    <script src="/user_files/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="/user_files/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+    <script src="/user_files/js/vendor/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugins JS -->
+    <script src="/user_files/js/plugins/swiper-bundle.min.js"></script>
+    <script src="/user_files/js/plugins/fancybox.min.js"></script>
+    <script src="/user_files/js/plugins/jquery.nice-select.min.js"></script>
+    <script src="/user_files/js/plugins/jquery.countdown.min.js"></script>
+    <script src="/user_files/js/plugins/isotope.pkgd.min.js"></script>
+    <script src="/user_files/js/plugins/range-slider.js"></script>
+
+    <!-- Custom Main JS -->
+    <script src="/user_files/js/main.js"></script>
+
+</body>
+
+
+<!-- Mirrored from htmldemo.net/elehaus/elehaus/shop.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 13:41:36 GMT -->
+
+</html>
