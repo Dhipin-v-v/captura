@@ -5,6 +5,7 @@ const couponModel = require('../models/couponModel')
 const bcrypt = require('bcrypt')
 const multer = require('multer')
 const productModel = require('../models/productModel')
+const orderModel = require('../models/orderModel')
 
 exports.userDetails = () => {
     return new Promise(async (res, rej) => {
@@ -293,6 +294,18 @@ exports.deleteProduct = (id) => {
             })
             console.log("Product deleted succesfully");
             res();
+        } catch (err) {
+            rej(err)
+        }
+    })
+}
+
+exports.viewAllOrders = () => {
+    return new Promise(async(res, rej) => {
+        try {
+            const orders = await orderModel.find().populate('userId').lean()
+            console.log(orders);
+            res(orders)
         } catch (err) {
             rej(err)
         }

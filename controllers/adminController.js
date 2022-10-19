@@ -146,4 +146,10 @@ exports.deleteProduct = (req, res, next) => {
     })
 }
 
+exports.orders = (req, res, next) => {
+    adminHelper.viewAllOrders().then((orders) => {
+        res.render('admin/orders',{orders})
+    })
+}
+
 

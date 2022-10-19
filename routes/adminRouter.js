@@ -74,6 +74,7 @@ router
 
 router
       .route('/orders')
+      .get(middleware.loginCheck,adminController.orders)
 
 
       

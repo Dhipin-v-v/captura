@@ -124,23 +124,24 @@
                     <th style="background-color: #435c70;" class="sticky-header" scope="col">PAYMENT MODE</th>
                     <th style="background-color: #435c70;" class="sticky-header" scope="col">PAYMENT STATUS</th>
                     <th style="background-color: #435c70;" class="sticky-header" scope="col">ORDER STATUS</th>
-                    <th style="background-color: #435c70;" class="sticky-header" scope="col">VIEW ORDER</th>
+                    <th style="background-color: #435c70;" class="sticky-header" scope="col"></th>
                     <th style="background-color: #435c70;" class="sticky-header" scope="col">ACTION</th>
                   </tr>
                 </thead>
                 <tbody>
-
+                {{#each orders}}
                   <tr>
-                    <th></th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <th>{{indexUpdate @index}}</th>
+                    <td>{{this.date}}</td>
+                    <td>{{this.userId.name}}</td>
+                    <td>{{this.net}}</td>
+                    <td>{{this.paymentMethod}}</td>
+                    <td>{{this.paymentStatus}}</td>
+                    <td>{{this.orderStatus}}</td>
                     <td><a><i class="fa fa-eye d-flex justify-content-center" aria-hidden="true"></i></a></td>
+                    <td></td>
                   </tr>
-
+                {{/each}}
                 </tbody>
               </table>
             </div>
