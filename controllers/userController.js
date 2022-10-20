@@ -3,13 +3,12 @@ const adminHelper = require('../helpers/adminHelper')
 const cartHelper = require('../helpers/cartHelper')
 const wishlistHelper = require('../helpers/wishlistHelper')
 const orderHelper = require('../helpers/orderHelper')
-const { response } = require('express')
 
 exports.testPage = (req, res, next) => {
     res.render('admin/orders')
 };
 
-
+//Goto homepage
 exports.homepage = (req, res, next) => {
     adminHelper.getAllProducts().then((products) => {
         if (req.session.loggedIn) {
@@ -23,6 +22,8 @@ exports.homepage = (req, res, next) => {
     })
 };
 
+
+//Login check
 exports.login = (req, res, next) => {
     userHelper.login_check(req.body).then((response) => {
         if (response.status) {
@@ -46,6 +47,7 @@ exports.login = (req, res, next) => {
 };
 
 
+//Login page
 exports.loginPage = (req, res) => {
     if (req.session.loggedIn) {
         res.redirect('/')
@@ -54,6 +56,7 @@ exports.loginPage = (req, res) => {
         res.render('users/login', { user: true });
 };
 
+//Signup page
 exports.signupPage = (req, res) => {
     if (req.session.loggedIn) {
         res.redirect('/')
@@ -62,6 +65,7 @@ exports.signupPage = (req, res) => {
         res.render('users/signup', { user: true });
 };
 
+//Signup check
 exports.signedUp = (req, res, next) => {
     if (req.body.password === req.body.rePassword) {
         userHelper.signup_user(req.body).then((response) => {
@@ -83,7 +87,7 @@ exports.signedUp = (req, res, next) => {
     }
 };
 
-
+// Accounts page
 exports.account = (req, res, next) => {
     userHelper.getAllAddresses(req.session.user._id).then((addresses) => {
         userHelper.fetchUserDetails(req.session.user._id).then((user) => {
@@ -96,6 +100,7 @@ exports.account = (req, res, next) => {
     })
 };
 
+//Logout
 exports.logout = (req, res) => {
     req.session.loggedIn = null
     req.session.user = null
@@ -109,10 +114,12 @@ exports.logout = (req, res) => {
 };
 
 
+// OTP verification page
 exports.otp = (req, res) => {
     res.render('users/mobile_verification', { user: true });
 };
 
+// OTP check
 exports.checkOtp = (req, res, next) => {
     const mobile = req.session.mobile
     const otp = req.body.otp
@@ -132,6 +139,7 @@ exports.checkOtp = (req, res, next) => {
     })
 };
 
+//Single product page
 exports.singleProduct = (req, res, next) => {
     userHelper.findSingleProduct(req.params.id).then((productDetails) => {
         if (req.session.loggedIn) {
@@ -144,6 +152,7 @@ exports.singleProduct = (req, res, next) => {
     })
 }
 
+//Products list by category
 exports.shopByCategory = (req, res, next) => {
     if (req.params.id == 1) {
         adminHelper.getCategories().then((categoryData) => {
@@ -174,6 +183,7 @@ exports.shopByCategory = (req, res, next) => {
     }
 }
 
+// Cart page
 exports.cart = (req, res, next) => {
     cartHelper.userCart(req.session.user._id).then((cartData) => {
         res.render('users/cart', { user: true, login: true, cart: cartData.user.cart, total: cartData.cartTotal })
@@ -183,6 +193,7 @@ exports.cart = (req, res, next) => {
         })
 }
 
+// Add product to cart
 exports.addToCart = (req, res, next) => {
     cartHelper.addToCart(req.session.user._id, req.params.id).then((count) => {
         res.json(count)
@@ -191,6 +202,7 @@ exports.addToCart = (req, res, next) => {
     })
 }
 
+// Delete product from cart
 exports.deleteFromCart = (req, res, next) => {
     cartHelper.deleteFromCart(req.session.user._id, req.params.id).then((response) => {
         console.log("product deleted from cart");
@@ -200,6 +212,7 @@ exports.deleteFromCart = (req, res, next) => {
     })
 }
 
+//  Get cart count
 exports.cartCount = (req, res, next) => {
     cartHelper.cartCount(req.session.user._id).then((count) => {
         res.json(count)
@@ -208,6 +221,7 @@ exports.cartCount = (req, res, next) => {
     })
 }
 
+// Cart count increment or decrement
 exports.updateCart = (req, res, next) => {
     cartHelper.updateCart(req.session.user._id, req.body).then((quantity) => {
         res.json(quantity)
@@ -216,6 +230,7 @@ exports.updateCart = (req, res, next) => {
     })
 }
 
+// Wishlist page
 exports.wishlist = (req, res, next) => {
     wishlistHelper.userWishlist(req.session.user._id).then((wishlistData) => {
         res.render('users/wishlist', { user: true, login: true, data: wishlistData.wishlist })
@@ -224,6 +239,7 @@ exports.wishlist = (req, res, next) => {
     })
 }
 
+// Add product to wishlist
 exports.addToWishlist = (req, res, next) => {
     wishlistHelper.addToWishlist(req.session.user._id, req.params.id).then((data) => {
         res.json(data);
@@ -232,6 +248,7 @@ exports.addToWishlist = (req, res, next) => {
     })
 }
 
+// Delete product from wishlist
 exports.deleteFromWishlist = (req, res, next) => {
     wishlistHelper.deleteFromWishlist(req.session.user._id, req.params.id).then((data) => {
         res.json(data);
@@ -240,6 +257,7 @@ exports.deleteFromWishlist = (req, res, next) => {
     })
 }
 
+// Add new address
 exports.addAddress = (req, res, next) => {
     userHelper.addAddress(req.session.user._id, req.body).then((data) => {
         res.json(data);
@@ -248,6 +266,7 @@ exports.addAddress = (req, res, next) => {
     })
 }
 
+// Delete existing address
 exports.deleteAddress = (req, res, next) => {
     userHelper.deleteAddress(req.session.user._id, req.params.id).then((data) => {
         res.json(data)
@@ -256,6 +275,7 @@ exports.deleteAddress = (req, res, next) => {
     })
 }
 
+// Change password
 exports.changePassword = (req, res, next) => {
     userHelper.changePassword(req.session.user._id, req.body).then((response) => {
         res.json(response)
@@ -264,6 +284,7 @@ exports.changePassword = (req, res, next) => {
     })
 }
 
+// Edit user profile
 exports.editProfile = (req, res, next) => {
     userHelper.editProfile(req.session.user._id, req.body).then((response) => {
         res.json(response)
@@ -272,6 +293,7 @@ exports.editProfile = (req, res, next) => {
     })
 }
 
+//  Apply coupon code
 exports.applyCoupon = (req, res, next) => {
     const response = {}
     userHelper.applyCoupon(req.params.id).then((couponResponse) => {
@@ -293,7 +315,7 @@ exports.applyCoupon = (req, res, next) => {
     })
 }
 
-
+// Checkout page
 exports.checkout = (req, res, next) => {
     userHelper.getAllAddresses(req.session.user._id).then((addresses) => {
         cartHelper.userCart(req.session.user._id).then((cartData) => {
@@ -310,6 +332,7 @@ exports.checkout = (req, res, next) => {
     })
 }
 
+// Order success page
 exports.orderSuccess = (req, res) => {
     if (req.session.orderId) {
         res.render('users/order_success', { user: true, login: true, order: req.session.orderId })
@@ -317,10 +340,12 @@ exports.orderSuccess = (req, res) => {
     }
 }
 
+// Payment failed page
 exports.paymentFail = (req, res) => {
     res.render('users/payment_failed', { user: true, login: true })
 }
 
+// Place an order
 exports.placeOrder = (req, res, next) => {
     if (req.body.payment === 'cod') {
         orderHelper.placeOrder(req.body, req.session.user._id, req.session.coupon).then((response) => {
@@ -341,6 +366,7 @@ exports.placeOrder = (req, res, next) => {
     }
 }
 
+// verify payment
 exports.verifyPayment = (req, res, next) => {
     console.log(req.body);
     orderHelper.verifyPayment(req.body).then(() => {
@@ -354,6 +380,7 @@ exports.verifyPayment = (req, res, next) => {
     })
 }
 
+// Single order details page
 exports.orderDetails = (req, res, next) => {
     orderHelper.orderDetails(req.params.id, req.session.user._id).then((response) => {
         res.render('users/order_details', { user: true, login: true, order: response.orderData, address: response.address })
@@ -362,6 +389,7 @@ exports.orderDetails = (req, res, next) => {
     })
 }
 
+// Cancel an order
 exports.cancelOrder = (req, res, next) => {
     orderHelper.cancelOrder(req.params.id, req.session.user._id).then((response) => {
         res.json(response)

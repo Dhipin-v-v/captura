@@ -7,35 +7,44 @@ router
       .route('/test')
       .get(userController.testPage)
 
+
+//Home page
 router
       .route('/')
       .get(middleware.activeCheck,userController.homepage)
       .post(userController.login)
 
+// Login page
 router
       .route('/login')
       .get(userController.loginPage)
 
+// Signup page
 router
       .route('/signup')
       .get(userController.signupPage)
 
+// signup data to database
 router
       .route('/signed_up')
       .post(userController.signedUp)
 
+// My account page
 router
       .route('/account')
       .get(middleware.loginCheck,middleware.activeCheck,userController.account)
 
+// Logout user
 router
       .route('/logout')
       .get(userController.logout)
 
+// Mobile verification page
 router
       .route('/verification')
       .post(userController.otp)
 
+//
 router
       .route('/checkOtp')
       .post(userController.checkOtp)
