@@ -7,6 +7,7 @@ const multer = require('multer')
 const productModel = require('../models/productModel')
 const orderModel = require('../models/orderModel')
 
+// Get details of a all users
 exports.userDetails = () => {
     return new Promise(async (res, rej) => {
         usersData = await userModel.find().lean()
@@ -14,6 +15,7 @@ exports.userDetails = () => {
     })
 }
 
+// Block a specific user
 exports.blockUser = (id) => {
     return new Promise(async (res, rej) => {
         await userModel.findByIdAndUpdate({ _id: id }, { isActive: false })
@@ -21,6 +23,7 @@ exports.blockUser = (id) => {
     })
 }
 
+// unblock a specific user
 exports.unblockUser = (id) => {
     return new Promise(async (res, rej) => {
         await userModel.findByIdAndUpdate({ _id: id }, { isActive: true })
@@ -28,22 +31,7 @@ exports.unblockUser = (id) => {
     })
 }
 
-// exports.addAdmin = (body) => {
-//     return new Promise(async (res, rej) => {
-//         body.password = await bcrypt.hash(body.password, 10)
-//         const user = new adminModel(body)
-//         user.save()
-//             .then((response) => {
-//                 console.log("User data saved sucessfully to admin database");
-//                 res(response)
-//             })
-//             .catch((err) => {
-//                 console.log("User data not saved to admin database");
-//                 rej(err)
-//             })
-//     })
-// }
-
+// Admin login check
 exports.login_check = (body => {
     return new Promise(async (res, rej) => {
         const admin = await adminModel.findOne({ email: body.email })
@@ -69,6 +57,7 @@ exports.login_check = (body => {
     })
 })
 
+// Add a new category to database
 exports.addCategory = (body) => {
     return new Promise(async(res, rej) => {
         categoryExists = await categoryModel.findOne({category: body.category}).lean()
@@ -87,6 +76,7 @@ exports.addCategory = (body) => {
     })
 }
 
+// Get all categories data
 exports.getCategories = () => {
     return new Promise(async (res, rej) => {
         const categoryData = await categoryModel.find().lean();
@@ -94,6 +84,7 @@ exports.getCategories = () => {
     })
 }
 
+// Find a single category
 exports.viewSingleCategory = (id) => {
     return new Promise(async (res, rej) => {
         const category = await categoryModel.findOne({ _id: id }).lean()
@@ -101,6 +92,7 @@ exports.viewSingleCategory = (id) => {
     })
 }
 
+// Update a specific category
 exports.updateCategory = (body) => {
     return new Promise(async (res, rej) => {
         const categoryExists = await categoryModel.findOne({category: body.categoryName}).lean()
@@ -114,6 +106,7 @@ exports.updateCategory = (body) => {
     })
 }
 
+// Delete a specific category
 exports.deleteCategory = (id) => {
     return new Promise(async (res, rej) => {
         try {
@@ -131,6 +124,7 @@ exports.deleteCategory = (id) => {
     })
 }
 
+// Get all coupons
 exports.getAllCoupons = () => {
     return new Promise(async(res, rej) => {
         try {
@@ -142,6 +136,7 @@ exports.getAllCoupons = () => {
     })
 }
 
+// Add a new coupon to database
 exports.addCoupon = (body) => {
     return new Promise(async(res, rej) => {
         try {
@@ -167,6 +162,7 @@ exports.addCoupon = (body) => {
     })
 }
 
+// Delete a single coupon
 exports.deleteCoupon = (couponId) => {
     return new Promise(async(res, rej) => {
         try {
@@ -233,6 +229,7 @@ exports.addProductConfirm = ((body) => {
     })
 })
 
+// Get details of every product
 exports.getAllProducts = () => {
     return new Promise(async (res, rej) => {
         try {
@@ -245,6 +242,7 @@ exports.getAllProducts = () => {
     })
 }
 
+// Update a single product
 exports.updateProduct = (id, body) => {
     return new Promise(async (res, rej) => {
         try {
@@ -269,6 +267,7 @@ exports.updateProduct = (id, body) => {
     })
 }
 
+// get single product's details from database
 exports.viewSingleProduct = (id) => {
     return new Promise(async (res, rej) => {
         try {
@@ -284,6 +283,7 @@ exports.viewSingleProduct = (id) => {
     })
 }
 
+// delete a specific product
 exports.deleteProduct = (id) => {
     return new Promise(async (res, rej) => {
         try {
@@ -300,6 +300,7 @@ exports.deleteProduct = (id) => {
     })
 }
 
+// Get details of every orders in database
 exports.viewAllOrders = () => {
     return new Promise(async(res, rej) => {
         try {

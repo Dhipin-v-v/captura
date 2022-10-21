@@ -14,7 +14,7 @@ function cartCount() {
 function addToCart(id) {
     $.ajax({
         url: '/add_to_cart/' + id,
-        method: 'get',
+        method: 'put',
         success: (res) => {
             swal({
                 title: 'Added to cart',
@@ -43,7 +43,7 @@ function deleteCartItem(id) {
             if (willDelete) {
                 $.ajax({
                     url: '/delete_from_cart/' + id,
-                    method: 'get',
+                    method: 'delete',
                     success: (res) => {
                         document.getElementById('cart-count').innerHTML = res
                         $("#refreshh").load(location.href + " #refreshh")
@@ -62,7 +62,7 @@ function changeQuantity(id, change) {
             change: change,
         },
         url: '/cart_count',
-        method: 'post',
+        method: 'put',
         success: (res) => {
             if (res.success)
                 $("#refreshh").load(location.href + " #refreshh")
@@ -84,7 +84,7 @@ function changeQuantity(id, change) {
 function addToWishlist(id) {
     $.ajax({
         url: '/add_to_wishlist/' + id,
-        method: 'get',
+        method: 'put',
         success: (res) => {
             if (res == 1) {
                 swal({
@@ -109,7 +109,7 @@ function addToWishlist(id) {
 function deleteFromWishlist(id) {
     $.ajax({
         url: '/delete_from_wishlist/' + id,
-        method: 'get',
+        method: 'delete',
         success: (res) => {
             $("#wish-refresh").load(location.href + " #wish-refresh")
         }
@@ -165,7 +165,7 @@ function deleteAddress(addressId) {
         if (willDelete) {
             $.ajax({
                 url: '/delete_address/' + addressId,
-                method: 'get',
+                method: 'delete',
                 success: (res) => {
                     $("#address-refresh").load(location.href + " #address-refresh")
                 }
@@ -320,7 +320,7 @@ function cancelOrder(orderId) {
         if (willCancel) {
             $.ajax({ 
                 url: '/cancel_order/' + orderId,
-                method: 'get',
+                method: 'delete',
                 success: (res) => {
                     swal({
                         title: 'Order cancelled',
@@ -347,7 +347,7 @@ function changePassword() {
             reEntered: confirmPassword
         },
         url: '/change_password',
-        method: 'post',
+        method: 'patch',
         success: (res) => {
             if (res.success) {
                 swal({
@@ -383,7 +383,7 @@ function editProfile() {
             email: email
         },
         url: '/edit_profile',
-        method: 'post',
+        method: 'patch',
         success: (res) => {
             swal({
                 title: 'Profile updated successfully',

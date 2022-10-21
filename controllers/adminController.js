@@ -1,5 +1,6 @@
 const adminHelper = require('../helpers/adminHelper');
 
+// Admin login check
 exports.login = (req, res) => {
     adminHelper.login_check(req.body).then((response) => {
         if (response.status) {
@@ -16,41 +17,47 @@ exports.login = (req, res) => {
     })
 };
 
-
+// Render admin login page
 exports.homepage = (req, res) => {
     res.render('admin/homepage')
 };
 
+// Render user management page
 exports.users = (req, res) => {
     adminHelper.userDetails().then((userData) => {
         res.render('admin/users', { userData });
     })
 };
 
+// Render product management page
 exports.products = (req, res) => {
     adminHelper.getAllProducts().then((products) => {
         res.render('admin/products', { product: products });
     })
 };
 
+// Render category management page
 exports.category = (req, res) => {
     adminHelper.getCategories().then((categories) => {
         res.render('admin/category', { categoryData: categories });
     })
 };
 
+// Add a new category to database
 exports.addCategory = (req, res) => {
     adminHelper.addCategory(req.body).then((response) => {
         res.json(response);
     })
 }
 
+// Render edit category page
 exports.editCategory = ((req, res) => {
     adminHelper.viewSingleCategory(req.params.id).then((category) => {
         res.render('admin/edit_category', { category: category })
     })
 })
 
+// Delete a category
 exports.deleteCategory = (req, res, next) => {
     adminHelper.deleteCategory(req.params.id).then((response) => {
         res.json(response)
@@ -59,18 +66,21 @@ exports.deleteCategory = (req, res, next) => {
     })
 }
 
+// Update a category
 exports.updateCategory = (req, res) => {
     adminHelper.updateCategory(req.body).then((response) => {
         res.json(response)
     })
 }
 
+// Render coupon management page
 exports.coupon = (req, res) => {
     adminHelper.getAllCoupons().then((couponData) => {
         res.render('admin/coupon', { coupon: couponData });
     })
 };
 
+// Add a new coupon
 exports.addCoupon = (req, res, next) => {
     adminHelper.addCoupon(req.body).then((response) => {
         res.json(response)
@@ -79,24 +89,28 @@ exports.addCoupon = (req, res, next) => {
     })
 }
 
+// Delete an existing coupon
 exports.deleteCoupon = (req, res, next) => {
     adminHelper.deleteCoupon(req.params.id).then((response) => {
         res.json(response)
     })
 }
 
+// Block a user
 exports.block = (req, res) => {
     adminHelper.blockUser(req.params.user).then(() => {
         res.json(true)
     })
 };
 
+// Unblock a user
 exports.unblock = (req, res) => {
     adminHelper.unblockUser(req.params.user).then(() => {
         res.json(true)
     })
 };
 
+// Admin logout
 exports.logout = (req, res) => {
     req.session.adminLog = null
     req.session.admin = null
@@ -105,12 +119,14 @@ exports.logout = (req, res) => {
     res.redirect('/admin');
 };
 
+// Render add product page
 exports.addProduct = (req, res) => {
     adminHelper.getCategories().then((categories) => {
         res.render('admin/add_single_product', { categoryData: categories });
     })
 }
 
+// Add a new product
 exports.addProductConfirm = (req, res, next) => {
     const imgs = req.files;
     let images = imgs.map((value) => value.filename)
@@ -122,6 +138,7 @@ exports.addProductConfirm = (req, res, next) => {
     })
 }
 
+// Render edit single product page
 exports.editProduct = (req, res) => {
     adminHelper.viewSingleProduct(req.params.id).then((response) => {
         const product = response.product
@@ -130,6 +147,7 @@ exports.editProduct = (req, res) => {
     })
 }
 
+// Edit existing product
 exports.updateProduct = (req, res, next) => {
     adminHelper.updateProduct(req.params.id, req.body).then(() => {
         res.redirect('/admin/products')
@@ -138,6 +156,7 @@ exports.updateProduct = (req, res, next) => {
     })
 }
 
+// Delete an existing product
 exports.deleteProduct = (req, res, next) => {
     adminHelper.deleteProduct(req.params.id).then(() => {
         res.redirect('/admin/products')
@@ -146,6 +165,7 @@ exports.deleteProduct = (req, res, next) => {
     })
 }
 
+// Render order management page
 exports.orders = (req, res, next) => {
     adminHelper.viewAllOrders().then((orders) => {
         res.render('admin/orders',{orders})

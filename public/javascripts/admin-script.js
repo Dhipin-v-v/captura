@@ -1,35 +1,35 @@
-function deleteProduct(productId){
+function deleteProduct(productId) {
     swal({
         title: "Delete this product ?",
         text: "Once deleted, you cannot undo the cancel",
         icon: "warning",
         buttons: true,
         dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-            $.ajax({ 
-                url: '/admin/delete_product/' + productId,
-                method: 'get',
-                success: (res) => {
-                    swal({
-                        title: 'Product deleted',
-                        button: false,
-                        timer: 1000,
-                        icon: "success",
-                    })
-                    $("#product-table-refresh").load(location.href + " #product-table-refresh")
-                }
-            })
-        }
-      });
+    })
+        .then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    url: '/admin/delete_product/' + productId,
+                    method: 'patch',
+                    success: (res) => {
+                        swal({
+                            title: 'Product deleted',
+                            button: false,
+                            timer: 1000,
+                            icon: "success",
+                        })
+                        $("#product-table-refresh").load(location.href + " #product-table-refresh")
+                    }
+                })
+            }
+        });
 }
 
 
 function deleteCategory(categoryId) {
     $.ajax({
         url: '/admin/delete_category/' + categoryId,
-        method: 'get',
+        method: 'delete',
         success: (response) => {
             if (response == 1) {
                 swal({
@@ -59,7 +59,7 @@ function editCategory(categoryId) {
             categoryName: categoryName
         },
         url: '/admin/update_category',
-        method: 'post',
+        method: 'put',
         success: (response) => {
             if (response == 1) {
                 location.href = '/admin/category'
@@ -77,7 +77,7 @@ function editCategory(categoryId) {
 
 function addCategory() {
     const category = document.getElementById('addCategoryInput').value
-    if(category){
+    if (category) {
         $.ajax({
             data: {
                 category: category
@@ -118,7 +118,7 @@ function blockUser(id) {
             if (block) {
                 $.ajax({
                     url: '/admin/block_user/' + id,
-                    method: 'get',
+                    method: 'put',
                     success: (response) => {
                         swal({
                             title: 'User unblocked',
@@ -136,7 +136,7 @@ function blockUser(id) {
 function unblockUser(id) {
     $.ajax({
         url: '/admin/unblock_user/' + id,
-        method: 'get',
+        method: 'put',
         success: (response) => {
             swal({
                 title: 'User unblocked',
@@ -181,7 +181,7 @@ function addCoupon() {
                 document.getElementById('couponForm').reset();
             }
         })
-    } else{
+    } else {
         swal({
             title: 'Enter coupon code and percentage',
             button: false,
@@ -199,11 +199,11 @@ function deleteCoupon(couponId) {
         dangerMode: true,
     })
         .then((deleted) => {
-            if(deleted){
+            if (deleted) {
                 $.ajax({
                     url: '/admin/delete_coupon/' + couponId,
-                    method: 'get',
-                    success: (response) => { 
+                    method: 'delete',
+                    success: (response) => {
                         swal({
                             title: 'Coupon deleted',
                             button: false,
@@ -212,7 +212,37 @@ function deleteCoupon(couponId) {
                         })
                         $("#couponDiv").load(location.href + " #couponDiv")
                     }
-                })                
+                })
             }
         })
+}
+
+function packOrder(orderId) {
+    $.ajax({
+        url: '/admin/pack_order' + orderId,
+        method: 'patch',
+        success: (response) => {
+            $("#ordersRefresh").load(location.href + " #ordersRefresh")
+        }
+    })
+}
+
+function shipOrder() {
+    $.ajax({
+        url: '/admin/ship_order' + orderId,
+        method: 'patch',
+        success: (response) => {
+            $("#ordersRefresh").load(location.href + " #ordersRefresh")
+        }
+    })
+}
+
+function deliverOrder() {
+    $.ajax({
+        url: '/admin/deliver_order' + orderId,
+        method: 'patch',
+        success: (response) => {
+            $("#ordersRefresh").load(location.href + " #ordersRefresh")
+        }
+    })
 }

@@ -4,13 +4,9 @@ const bcrypt = require('bcrypt');
 const couponModel = require('../models/couponModel')
 
 const client = require("twilio")(process.env.ACCOUNT_SID, process.env.AUTH_TOKEN)
-const Razorpay = require("razorpay");
 
-// var instance = new Razorpay({
-//   key_id: process.env.KEY_ID,
-//   key_secret: process.env.SECRET_KEY,
-// });
 
+// Signup a new user
 exports.signup_user = (body) => {
     return new Promise(async (res, rej) => {
         const response = {};
@@ -46,6 +42,7 @@ exports.signup_user = (body) => {
     })
 }
 
+// Checking whether the user exists in database or not
 exports.login_check = (body) => {
     return new Promise(async (res, rej) => {
         const user = await userModel.findOne({ email: body.email })
@@ -60,7 +57,6 @@ exports.login_check = (body) => {
                         res(response)
                     }
                     else {
-
                         client.verify.v2
                             .services(process.env.SERVICE_ID)
                             .verifications.create({
@@ -113,6 +109,7 @@ exports.otpCheck = (mobile, otp) => {
     });
 }
 
+//Get a specific user's details from database
 exports.fetchUserDetails = (id) => {
     try {
         return new Promise(async (res, rej) => {
@@ -124,6 +121,7 @@ exports.fetchUserDetails = (id) => {
     }
 }
 
+// Get all details of a specific product from database
 exports.findSingleProduct = (id) => {
     return new Promise(async (res, rej) => {
         try {
@@ -135,6 +133,7 @@ exports.findSingleProduct = (id) => {
     })
 }
 
+// Find products under a specific category
 exports.findProductsByCategory = (id) => {
     return new Promise(async (res, rej) => {
         try {
@@ -146,6 +145,7 @@ exports.findProductsByCategory = (id) => {
     })
 }
 
+// Add new address to a user's data
 exports.addAddress = (userId, address) => {
     return new Promise(async (res, rej) => {
         try {
@@ -168,6 +168,7 @@ exports.addAddress = (userId, address) => {
     })
 }
 
+// Get all addresses of a specific user
 exports.getAllAddresses = (userId) => {
     return new Promise(async (res, rej) => {
         try {
@@ -179,6 +180,7 @@ exports.getAllAddresses = (userId) => {
     })
 }
 
+// Delete specific address from a specific user
 exports.deleteAddress = (userId, addressId) => {
     return new Promise(async (res, rej) => {
         try {
@@ -196,6 +198,7 @@ exports.deleteAddress = (userId, addressId) => {
     })
 }
 
+// Change password of an existing user
 exports.changePassword = (userId, body) => {
     const response = {}
     return new Promise(async (res, rej) => {
@@ -220,6 +223,7 @@ exports.changePassword = (userId, body) => {
     })
 }
 
+//Edit details of a specific user
 exports.editProfile = (userId, body) => {
     try {
         return new Promise(async (res, rej) => {
@@ -236,6 +240,7 @@ exports.editProfile = (userId, body) => {
     }
 }
 
+// Check whether the coupon exists in database or not
 exports.applyCoupon = (coupon) => {
     const response = {}
     return new Promise(async (res, rej) => {
@@ -250,6 +255,3 @@ exports.applyCoupon = (coupon) => {
         }
     })
 }
-
-
-
