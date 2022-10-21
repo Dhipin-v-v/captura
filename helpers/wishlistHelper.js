@@ -35,7 +35,7 @@ exports.addToWishlist = (userId, productId) => {
                         }
                     }
                 })
-                console.log("Product added to wishlist");
+                // console.log("Product added to wishlist");
                 res(1);
             }
         } catch (err) {
@@ -54,7 +54,7 @@ exports.deleteFromWishlist = (userId, productId) => {
                     }
                 }
             })
-            console.log("Product removed from wishlist");
+            // console.log("Product removed from wishlist");
             res(true);
         } catch (err) {
             rej(err)

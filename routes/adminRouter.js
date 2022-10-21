@@ -93,21 +93,30 @@ router
       .route('/orders')
       .get(middleware.loginCheck,adminController.orders)
 
+// Change order status to "Packed"
 router
       .route('/pack_order/:id')
       .patch(middleware.loginCheck,adminController.packOrder)
 
+// Change order status to "Shipped"
 router
       .route('/ship_order/:id')
       .patch(middleware.loginCheck,adminController.shipOrder)
 
+// Change order status to "Delivered"
 router
       .route('/deliver_order/:id')
       .patch(middleware.loginCheck,adminController.deliverOrder)
 
+// Get order details
 router
       .route('/order_details/:id')
       .get(middleware.loginCheck,adminController.orderDetails)
+
+// Get sales report
+router
+      .route('/sales-report')
+      .get(middleware.loginCheck,adminController.salesReport)
 
 
 module.exports = router;

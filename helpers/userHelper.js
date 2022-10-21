@@ -14,7 +14,7 @@ exports.signup_user = (body) => {
         const userMobile = await userModel.findOne({ mobile: body.mobile })
         if (userEmail || userMobile) {
             response.status = true;
-            console.log("Data already present");
+            // console.log("Data already present");
             res(response)
         }
         else {
@@ -31,11 +31,11 @@ exports.signup_user = (body) => {
             const user = new userModel(body)
             user.save()
                 .then((response) => {
-                    console.log("User data saved sucessfully to database");
+                    // console.log("User data saved sucessfully to database");
                     res(response)
                 })
                 .catch((err) => {
-                    console.log("User data not saved to database");
+                    // console.log("User data not saved to database");
                     rej(err)
                 })
         }
@@ -51,7 +51,7 @@ exports.login_check = (body) => {
             bcrypt.compare(body.password, user.password).then((status) => {
                 if (status) {
                     if (user.verified) {
-                        console.log("Password matched");
+                        // console.log("Password matched");
                         response.status = true;
                         response.user = user;
                         res(response)
@@ -69,13 +69,13 @@ exports.login_check = (body) => {
                     }
                 }
                 else {
-                    console.log("Password not match");
+                    // console.log("Password not match");
                     res(response)
                 }
             })
         }
         else {
-            console.log('Login failed');
+            // console.log('Login failed');
             res(response)
         }
     })
@@ -92,13 +92,13 @@ exports.otpCheck = (mobile, otp) => {
                 .verificationChecks.create({ to: "+91" + mobile, code: otp })
                 .then(async (verification_check) => {
                     await userModel.updateOne({ mobile: mobile }, { verified: true });
-                    console.log(verification_check);
+                    // console.log(verification_check);
                     response.status = verification_check.valid;
                     response.user = userData;
                     resolve(response);
                 })
                 .catch((err) => {
-                    console.log(err);
+                    // console.log(err);
                     response.failed = true;
                     resolve(response);
                 });

@@ -50,7 +50,7 @@ exports.addToCart = (userId, productId) => {
                     await userModel.updateOne({ _id: userId, "cart.product": productId }, {
                         $inc: { "cart.$.quantity": 1 }
                     })
-                    console.log("existing product count incremented");
+                    // console.log("existing product count incremented");
                 } else {
                     await userModel.updateOne({ _id: userId, "cart.product": productId }, {
                         $set: { "cart.$.quantity": stock }

@@ -185,7 +185,7 @@ function applyCoupon() {
             url: '/apply_coupon/' + enteredCoupon,
             method: 'get',
             success: (res) => {
-                console.log(res);
+                // console.log(res);
                 if (res.discount) {
                     let discount = res.cartTotal * (res.discount / 100)
                     let cartTotal = (res.cartTotal - discount) + 50
@@ -193,7 +193,7 @@ function applyCoupon() {
                     document.getElementById('discount-change').innerHTML = `₹${discount}.00`
                     document.getElementById('total-change').innerHTML = `₹${cartTotal}.00`
                 } else {
-                    console.log(res);
+                    // console.log(res);
                     document.getElementById('display-coupon').innerHTML = ` invalid coupon ❌`
                     $("#order-area-refresh").load(location.href + " #order-area-refresh")
                 }

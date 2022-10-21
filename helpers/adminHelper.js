@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt')
 const multer = require('multer')
 const productModel = require('../models/productModel')
 const orderModel = require('../models/orderModel')
+const Order = require('../models/orderModel')
 
 // Get details of a all users
 exports.userDetails = () => {
@@ -39,19 +40,19 @@ exports.login_check = (body => {
         if (admin) {
             bcrypt.compare(body.password, admin.password).then((status) => {
                 if (status) {
-                    console.log("Admin password matched");
+                    // console.log("Admin password matched");
                     response.status = true;
                     response.admin = admin;
                     res(response)
                 }
                 else {
-                    console.log("Admin password not match");
+                    // console.log("Admin password not match");
                     res(response)
                 }
             })
         }
         else {
-            console.log('Admin Login failed');
+            // console.log('Admin Login failed');
             res(response)
         }
     })
@@ -59,20 +60,20 @@ exports.login_check = (body => {
 
 // Add a new category to database
 exports.addCategory = (body) => {
-    return new Promise(async(res, rej) => {
-        categoryExists = await categoryModel.findOne({category: body.category}).lean()
-        if(categoryExists){
+    return new Promise(async (res, rej) => {
+        categoryExists = await categoryModel.findOne({ category: body.category }).lean()
+        if (categoryExists) {
             res(0)
-        } else{
+        } else {
             const category = new categoryModel(body)
             category.save().then(() => {
-                console.log("Category added to database");
+                // console.log("Category added to database");
                 res(1)
             }).catch((err) => {
-                console.log("Category not saved");
+                // console.log("Category not saved");
                 rej(err)
             })
-        }        
+        }
     })
 }
 
@@ -95,12 +96,12 @@ exports.viewSingleCategory = (id) => {
 // Update a specific category
 exports.updateCategory = (body) => {
     return new Promise(async (res, rej) => {
-        const categoryExists = await categoryModel.findOne({category: body.categoryName}).lean()
-        if(categoryExists){
+        const categoryExists = await categoryModel.findOne({ category: body.categoryName }).lean()
+        if (categoryExists) {
             res(0)
-        }else{
+        } else {
             await categoryModel.findByIdAndUpdate({ _id: body.categoryId }, { $set: { category: body.categoryName } })
-            console.log("1");
+            // console.log("1");
             res(1);
         }
     })
@@ -112,13 +113,13 @@ exports.deleteCategory = (id) => {
         try {
             categoryExist = await productModel.findOne({ category: id })
             if (categoryExist) {
-                console.log("There are products in this category");
+                // console.log("There are products in this category");
                 res(0);
             } else {
                 await categoryModel.findByIdAndDelete({ _id: id })
                 res(1);
             }
-        }catch (err) {
+        } catch (err) {
             rej(err)
         }
     })
@@ -126,11 +127,11 @@ exports.deleteCategory = (id) => {
 
 // Get all coupons
 exports.getAllCoupons = () => {
-    return new Promise(async(res, rej) => {
+    return new Promise(async (res, rej) => {
         try {
-           const coupons = await couponModel.find().lean()
-           res(coupons)
-        }catch(err) {
+            const coupons = await couponModel.find().lean()
+            res(coupons)
+        } catch (err) {
             rej(err)
         }
     })
@@ -138,12 +139,12 @@ exports.getAllCoupons = () => {
 
 // Add a new coupon to database
 exports.addCoupon = (body) => {
-    return new Promise(async(res, rej) => {
+    return new Promise(async (res, rej) => {
         try {
-            const couponExist = await couponModel.findOne({code: body.code})
-            if(couponExist){
+            const couponExist = await couponModel.findOne({ code: body.code })
+            if (couponExist) {
                 res(0)
-            } else{
+            } else {
                 const couponObj = {
                     code: body.code,
                     discount: body.discount
@@ -155,18 +156,18 @@ exports.addCoupon = (body) => {
                     rej(err)
                 })
             }
-            
-        } catch(err) {
-           rej(err) 
+
+        } catch (err) {
+            rej(err)
         }
     })
 }
 
 // Delete a single coupon
 exports.deleteCoupon = (couponId) => {
-    return new Promise(async(res, rej) => {
+    return new Promise(async (res, rej) => {
         try {
-            await couponModel.findOneAndDelete({_id:couponId})
+            await couponModel.findOneAndDelete({ _id: couponId })
             res(true)
         } catch (err) {
             rej(err)
@@ -216,14 +217,14 @@ exports.addProductConfirm = ((body) => {
             }
             const product = new productModel(productData)
             product.save().then(() => {
-                console.log("Product added to database");
+                // console.log("Product added to database");
                 res();
             }).catch((err) => {
                 rej(err)
             })
         }
         catch (err) {
-            console.log("Product not saved to database");
+            // console.log("Product not saved to database");
             rej(err)
         }
     })
@@ -233,10 +234,10 @@ exports.addProductConfirm = ((body) => {
 exports.getAllProducts = () => {
     return new Promise(async (res, rej) => {
         try {
-            const products = await productModel.find({active: true}).populate('category').lean()
+            const products = await productModel.find({ active: true }).populate('category').lean()
             res(products)
         } catch (err) {
-            console.log("Could not get products from database");
+            // console.log("Could not get products from database");
             rej(err)
         }
     })
@@ -259,9 +260,9 @@ exports.updateProduct = (id, body) => {
                     }
                 })
             res();
-            console.log("product updated sucessfully");
+            // console.log("product updated sucessfully");
         } catch (err) {
-            console.log("Could not update the product");
+            // console.log("Could not update the product");
             rej(err)
         }
     })
@@ -287,12 +288,12 @@ exports.viewSingleProduct = (id) => {
 exports.deleteProduct = (id) => {
     return new Promise(async (res, rej) => {
         try {
-            await productModel.findOneAndUpdate({ _id: id },{
-                $set:{
+            await productModel.findOneAndUpdate({ _id: id }, {
+                $set: {
                     active: false
                 }
             })
-            console.log("Product deleted succesfully");
+            // console.log("Product deleted succesfully");
             res();
         } catch (err) {
             rej(err)
@@ -302,7 +303,7 @@ exports.deleteProduct = (id) => {
 
 // Get details of every orders in database
 exports.viewAllOrders = () => {
-    return new Promise(async(res, rej) => {
+    return new Promise(async (res, rej) => {
         try {
             const orders = await orderModel.find().populate('userId').lean()
             res(orders)
@@ -316,7 +317,7 @@ exports.orderDetails = (orderId) => {
     return new Promise(async (res, rej) => {
         try {
             const response = {}
-            const userId = (await orderModel.findOne({_id:orderId})).userId
+            const userId = (await orderModel.findOne({ _id: orderId })).userId
             const user = await userModel.findOne({ _id: userId }).lean()
             response.orderData = await orderModel.findOne({ _id: orderId }).populate("products.product").lean()
             const addressIdFromOrder = response.orderData.address.toString()
@@ -325,6 +326,47 @@ exports.orderDetails = (orderId) => {
                     response.address = user.address[i];
                     break;
                 }
+            }
+            res(response)
+        } catch (err) {
+            rej(err)
+        }
+    })
+}
+
+exports.salesReport = () => {
+    return new Promise(async (res, rej) => {
+        try {
+            const noOfUsers = await userModel.countDocuments();
+            const noOfProducts = await productModel.countDocuments();
+            const noOfOrders = await orderModel.find({ orderStatus: "Delivered" }).countDocuments()
+            let totalProfit = 0;
+            const ordersData = await orderModel.find({ paymentStatus: "Paid" });
+            for (let i = 0; i < noOfOrders; i++) {
+                ordersData.map((val) => {
+                    totalProfit = val.net + totalProfit;
+                });
+            }
+            totalProfit = totalProfit.toString().slice(0, 11)
+            let dateList = [];
+            for (let i = 0; i < 10; i++) {
+                let d = new Date();
+                d.setDate(d.getDate() - i);
+                let newDate = d.toUTCString();
+                newDate = newDate.slice(5, 16);
+                dateList[i] = newDate;
+            }
+            let dateSales = [];
+            for (let i = 0; i < 10; i++) {
+                dateSales[i] = await orderModel.find({ date: dateList[i] }).lean().count();
+            }
+            const response = {
+                dateSales: dateSales,
+                dateList: dateList,
+                noOfUsers: noOfUsers,
+                noOfProducts: noOfProducts,
+                noOfOrders: noOfOrders,
+                totalProfit: totalProfit,
             }
             res(response)
         } catch (err) {

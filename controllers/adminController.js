@@ -7,7 +7,7 @@ exports.login = (req, res) => {
         if (response.status) {
             req.session.adminLog = true;
             req.session.admin = response.admin
-            console.log('Admin session created');
+            // console.log('Admin session created');
             res.render('admin/homepage');
         }
         else {
@@ -116,7 +116,7 @@ exports.logout = (req, res) => {
     req.session.adminLog = null
     req.session.admin = null
     req.session.loginErr = null
-    console.log('Admin session destroyed');
+    // console.log('Admin session destroyed');
     res.redirect('/admin');
 };
 
@@ -173,6 +173,7 @@ exports.orders = (req, res, next) => {
     })
 }
 
+// Render single order details
 exports.orderDetails = (req, res, next) => {
     adminHelper.orderDetails(req.params.id).then((response) => {
         res.render('admin/order_details', {order: response.orderData, address: response.address })
@@ -181,6 +182,7 @@ exports.orderDetails = (req, res, next) => {
     })
 }
 
+// Change order status
 exports.packOrder = (req, res, next) => {
     orderHelper.updateOrder(req.params.id, "Packed").then((response) => {
         res.json(response)
@@ -188,6 +190,8 @@ exports.packOrder = (req, res, next) => {
         next(err)
     })
 }
+
+// Change order status
 exports.shipOrder = (req, res, next) => {
     orderHelper.updateOrder(req.params.id, "Shipped").then((response) => {
         res.json(response)
@@ -195,6 +199,8 @@ exports.shipOrder = (req, res, next) => {
         next(err)
     })
 }
+
+// Change order status
 exports.deliverOrder = (req, res, next) => {
     orderHelper.updateOrder(req.params.id, "Delivered").then(() => {
         orderHelper.updatePaymentStatus(req.params.id, "Paid").then((response) => {
@@ -202,6 +208,15 @@ exports.deliverOrder = (req, res, next) => {
         }).catch((err) => {
             next(err)
         })
+    }).catch((err) => {
+        next(err)
+    })
+}
+
+// Get sales report
+exports.salesReport = (req, res, next) => {
+    adminHelper.salesReport().then((response) => {
+        res.json(response)
     }).catch((err) => {
         next(err)
     })

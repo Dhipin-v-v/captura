@@ -29,7 +29,7 @@ exports.login = (req, res, next) => {
         if (response.status) {
             req.session.loggedIn = true;
             req.session.user = response.user
-            console.log('Session created');
+            // console.log('Session created');
             res.redirect('/')
         }
         else if (response.re_verify) {
@@ -205,7 +205,7 @@ exports.addToCart = (req, res, next) => {
 // Delete product from cart
 exports.deleteFromCart = (req, res, next) => {
     cartHelper.deleteFromCart(req.session.user._id, req.params.id).then((response) => {
-        console.log("product deleted from cart");
+        // console.log("product deleted from cart");
         res.json(response)
     }).catch((err) => {
         next(err)
@@ -378,7 +378,7 @@ exports.placeOrder = (req, res, next) => {
 
 // verify payment
 exports.verifyPayment = (req, res, next) => {
-    console.log(req.body);
+    // console.log(req.body);
     orderHelper.verifyPayment(req.body).then(() => {
         orderHelper.changeOrderStatus(req.session.orderId, req.session.user._id).then(() => {
             res.json(true)
