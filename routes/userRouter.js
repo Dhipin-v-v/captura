@@ -3,11 +3,6 @@ const router = express.Router();
 const userController = require('./../controllers/userController')
 const middleware = require('../middlewares/userMiddleware')
 
-router
-      .route('/test')
-      .get(userController.testPage)
-
-
 //Home page
 router
       .route('/')

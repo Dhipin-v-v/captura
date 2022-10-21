@@ -4,10 +4,6 @@ const cartHelper = require('../helpers/cartHelper')
 const wishlistHelper = require('../helpers/wishlistHelper')
 const orderHelper = require('../helpers/orderHelper')
 
-exports.testPage = (req, res, next) => {
-    res.render('admin/orders')
-};
-
 //Goto homepage
 exports.homepage = (req, res, next) => {
     adminHelper.getAllProducts().then((products) => {
@@ -307,6 +303,8 @@ exports.applyCoupon = (req, res, next) => {
                 }
                 req.session.coupon = coupon
                 res.json(response)
+            }).catch((err) => {
+                next(err)
             })
         } else {
             req.session.coupon = false

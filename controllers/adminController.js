@@ -45,18 +45,22 @@ exports.category = (req, res) => {
 };
 
 // Add a new category to database
-exports.addCategory = (req, res) => {
+exports.addCategory = (req, res, next) => {
     adminHelper.addCategory(req.body).then((response) => {
         res.json(response);
+    }).catch((err) => {
+        next(err)
     })
 }
 
 // Render edit category page
-exports.editCategory = ((req, res) => {
+exports.editCategory = (req, res, next) => {
     adminHelper.viewSingleCategory(req.params.id).then((category) => {
         res.render('admin/edit_category', { category: category })
+    }).catch((err) => {
+        next(err)
     })
-})
+}
 
 // Delete a category
 exports.deleteCategory = (req, res, next) => {
@@ -68,16 +72,20 @@ exports.deleteCategory = (req, res, next) => {
 }
 
 // Update a category
-exports.updateCategory = (req, res) => {
+exports.updateCategory = (req, res, next) => {
     adminHelper.updateCategory(req.body).then((response) => {
         res.json(response)
+    }).catch((err) => {
+        next(err)
     })
 }
 
 // Render coupon management page
-exports.coupon = (req, res) => {
+exports.coupon = (req, res, next) => {
     adminHelper.getAllCoupons().then((couponData) => {
         res.render('admin/coupon', { coupon: couponData });
+    }).catch((err) => {
+        next(err)
     })
 };
 
@@ -94,6 +102,8 @@ exports.addCoupon = (req, res, next) => {
 exports.deleteCoupon = (req, res, next) => {
     adminHelper.deleteCoupon(req.params.id).then((response) => {
         res.json(response)
+    }).catch((err) => {
+        next(err)
     })
 }
 
@@ -101,6 +111,8 @@ exports.deleteCoupon = (req, res, next) => {
 exports.block = (req, res) => {
     adminHelper.blockUser(req.params.user).then(() => {
         res.json(true)
+    }).catch((err) => {
+        next(err)
     })
 };
 
@@ -108,6 +120,8 @@ exports.block = (req, res) => {
 exports.unblock = (req, res) => {
     adminHelper.unblockUser(req.params.user).then(() => {
         res.json(true)
+    }).catch((err) => {
+        next(err)
     })
 };
 
@@ -121,9 +135,11 @@ exports.logout = (req, res) => {
 };
 
 // Render add product page
-exports.addProduct = (req, res) => {
+exports.addProduct = (req, res, next) => {
     adminHelper.getCategories().then((categories) => {
         res.render('admin/add_single_product', { categoryData: categories });
+    }).catch((err) => {
+        next(err)
     })
 }
 
@@ -145,6 +161,8 @@ exports.editProduct = (req, res) => {
         const product = response.product
         const categoryData = response.categories
         res.render('admin/edit_single_product', { product, categoryData })
+    }).catch((err) => {
+        next(err)
     })
 }
 
@@ -170,13 +188,15 @@ exports.deleteProduct = (req, res, next) => {
 exports.orders = (req, res, next) => {
     adminHelper.viewAllOrders().then((orders) => {
         res.render('admin/orders', { orders })
+    }).catch((err) => {
+        next(err)
     })
 }
 
 // Render single order details
 exports.orderDetails = (req, res, next) => {
     adminHelper.orderDetails(req.params.id).then((response) => {
-        res.render('admin/order_details', {order: response.orderData, address: response.address })
+        res.render('admin/order_details', { order: response.orderData, address: response.address })
     }).catch((err) => {
         next(err)
     })
