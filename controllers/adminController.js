@@ -1,4 +1,5 @@
 const adminHelper = require('../helpers/adminHelper');
+const orderHelper = require('../helpers/orderHelper')
 
 // Admin login check
 exports.login = (req, res) => {
@@ -168,7 +169,41 @@ exports.deleteProduct = (req, res, next) => {
 // Render order management page
 exports.orders = (req, res, next) => {
     adminHelper.viewAllOrders().then((orders) => {
-        res.render('admin/orders',{orders})
+        res.render('admin/orders', { orders })
+    })
+}
+
+exports.orderDetails = (req, res, next) => {
+    adminHelper.orderDetails(req.params.id).then((response) => {
+        res.render('admin/order_details', {order: response.orderData, address: response.address })
+    }).catch((err) => {
+        next(err)
+    })
+}
+
+exports.packOrder = (req, res, next) => {
+    orderHelper.updateOrder(req.params.id, "Packed").then((response) => {
+        res.json(response)
+    }).catch((err) => {
+        next(err)
+    })
+}
+exports.shipOrder = (req, res, next) => {
+    orderHelper.updateOrder(req.params.id, "Shipped").then((response) => {
+        res.json(response)
+    }).catch((err) => {
+        next(err)
+    })
+}
+exports.deliverOrder = (req, res, next) => {
+    orderHelper.updateOrder(req.params.id, "Delivered").then(() => {
+        orderHelper.updatePaymentStatus(req.params.id, "Paid").then((response) => {
+            res.json(response)
+        }).catch((err) => {
+            next(err)
+        })
+    }).catch((err) => {
+        next(err)
     })
 }
 

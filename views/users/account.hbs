@@ -195,7 +195,7 @@
                                                         <td class="order-td">{{arrayLen this.products}}</td>
                                                         <td class="order-td">₹{{this.net}}</td>
                                                         <td class="order-td">{{this.paymentMethod}}</td>
-                                                        {{#if (eq this.orderStatus "canceled")}}
+                                                        {{#if (eq this.orderStatus "cancelled")}}
                                                         <td class="order-td" style="color: red";>Cancelled</td>
                                                         {{else}}
                                                         <td class="order-td">{{this.paymentStatus}}</td>

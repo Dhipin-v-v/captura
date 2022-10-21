@@ -114,55 +114,81 @@
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
           <div class="tm-bg-primary-dark tm-block tm-block-products">
             <div id="userTable" style="min-height: 600px;" class="tm-product-table-container">
-              <table class="table table-sm ">
-                <thead>
-                  <tr>
-                    <th style="background-color: #435c70;" class="sticky-header" scope="col">Sl NO</th>
-                    <th style="background-color: #435c70;" class="sticky-header" scope="col">DATE</th>
-                    <th style="background-color: #435c70;" class="sticky-header" scope="col">CUSTOME NAME</th>
-                    <th style="background-color: #435c70;" class="sticky-header" scope="col">ORDER AMOUNT</th>
-                    <th style="background-color: #435c70;" class="sticky-header" scope="col">PAYMENT MODE</th>
-                    <th style="background-color: #435c70;" class="sticky-header" scope="col">PAYMENT STATUS</th>
-                    <th style="background-color: #435c70;" class="sticky-header" scope="col">ORDER STATUS</th>
-                    <th style="background-color: #435c70;" class="sticky-header" scope="col"></th>
-                    <th style="background-color: #435c70;" class="sticky-header" scope="col">ACTION</th>
-                  </tr>
-                </thead>
-                <tbody>
-                {{#each orders}}
-                  <tr>
-                    <th>{{indexUpdate @index}}</th>
-                    <td>{{this.date}}</td>
-                    <td>{{this.userId.name}}</td>
-                    <td>{{this.net}}</td>
-                    <td>{{this.paymentMethod}}</td>
-                    <td>{{this.paymentStatus}}</td>
-                    <td>{{this.orderStatus}}</td>
-                    <td><a href="/admin/order_details/{{this._id}}"><i class="fa fa-info-circle d-flex justify-content-center text-white" aria-hidden="true"></a></td>
-                    {{#if (eq this.orderStatus "Failed")}}
-                        <td><i class="fa fa-exclamation-triangle d-flex justify-content-center"></i></td>
-                    {{else}}
-                        {{#if (eq this.orderStatus "Placed")}}
-                            <td><a><i onclick="packOrder('{{this._id}}')" class="fa fa-gift d-flex justify-content-center" title="Pack Order"></i></a></td>
-                        {{/if}}
+              <div class="card" style="background-color: #4e657a;">
+                        <div id="" class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <p class="small text-white mb-0">Order ID : {{order._id}}</p>
+                                <h2 class="text-white text-uppercase">{{order.orderStatus}}</h2>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <p class="small text-white mb-0">Order date : {{order.date}}</p>
+                            </div>
+                            <div>
+                                {{#each order.products}}
+                                <div style="background-color:#435c70;" class=" card shadow-0 border mb-4">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <img src="/images/products/{{this.product.images.[0]}}"
+                                                    class="img-fluid" alt="Phone">
+                                            </div>
+                                            <div class="col-md-6 d-flex align-items-center">
+                                                <p class="text-white mb-0">{{this.product.name}}</p>
+                                            </div>
+                                            <div class="col-md-2 d-flex align-items-center">
+                                                <p class="text-white mb-0 small">Qty: {{this.quantity}}</p>
+                                            </div>
+                                            <div class="col-md-2 d-flex align-items-center">
+                                                <p class="text-white mb-0 small">₹ {{this.pricePerItem}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{/each}}
+                            </div>
+                            {{!-- {{/each}} --}}
 
-                        {{#if (eq this.orderStatus "Packed")}}
-                            <td><a><i onclick="shipOrder('{{this._id}}')" class="fa fa-truck d-flex justify-content-center" title="Ship Order"></i></a></td>
-                        {{/if}}
+                            <div class="d-flex justify-content-between pt-2">
+                                <p class="text-white mb-0"><span class="fw-bold me-4"></span></p>
+                                <p class="text-white mb-0"><span
+                                        class="fw-bold me-4">Subtotal:</span>₹{{order.subtotal}}.00</p>
+                            </div>
 
-                        {{#if (eq this.orderStatus "Shipped")}}
-                            <td><a><i onclick="deliverOrder('{{this._id}}')" class="fa fa-handshake d-flex justify-content-center" title="Deliver Order"></i></a></td>
-                        {{/if}}
+                            <div class="d-flex justify-content-between pt-2">
+                                <p class="text-white mb-0"><span class="fw-bold me-4">Shipping address:</span></p>
+                            </div>
 
-                        {{#if (eq this.orderStatus "Delivered")}}
-                            <td><i class="fa fa-check d-flex justify-content-center text-success" title="Order completed"></i></td>
-                        {{/if}}
-                    
-                    {{/if}}
-                  </tr>
-                {{/each}}
-                </tbody>
-              </table>
+                            <div class="d-flex justify-content-between  ">
+                                <p class="text-white mb-0">{{address.name}}, {{address.house}},</p>
+                                {{#if order.coupon}}
+                                <p class="text-white mb-0"><span class="fw-bold me-4">Coupon used</span>{{order.coupon}}
+                                </p>
+                                {{/if}}
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <p class="text-white mb-0">{{address.locality}}, {{address.area}},</p>
+                                <p class="text-white mb-0"><span class="fw-bold me-4">Coupon discount</span>
+                                    ₹{{order.discount}}.00</p>
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-5">
+                                <p class="text-white mb-0">{{address.landmark}}, {{address.pincode}}</p>
+                                <p class="text-white mb-0"><span class="fw-bold me-4">Delivery
+                                        Charges</span> ₹50.00</p>
+                            </div>
+                            <div class="d-flex justify-content-between mb-5">
+                                <p class="text-white mb-0"></p>
+                                <p class="small text-white mb-0">Payment mode: {{order.paymentMethod}}</p>
+                            </div>
+                        </div>
+                        <div style="background-color:#435c70;" class="card-footer border-0 px-4 py-5"
+                            style="background-color: #c5c5c5; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+                            <h5 class="d-flex align-items-center justify-content-end text-white text-uppercase mb-0">
+                                Total
+                                amount: <span class="h2 mb-0 ms-2">₹{{order.net}}.00</span></h5>
+                        </div>
+                    </div>
             </div>
             <!-- table container -->
           </div>

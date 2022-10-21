@@ -49,7 +49,7 @@ exports.placeOrder = (body, userId, couponData) => {
             paymentMethod: paymentMode,
             paymentStatus: paymentStatus,
             address: address,
-            orderStatus: "placed",
+            orderStatus: "Placed",
             date: date
         }
 
@@ -159,12 +159,12 @@ exports.changeOrderStatus = (orderId, userId) => {
     })
 }
 
-exports.cancelOrder = (orderId, userId) => {
+exports.updatePaymentStatus = (orderId, status) => {
     return new Promise(async(res, rej) => {
         try {
             await orderModel.findByIdAndUpdate({_id:orderId},{
                 $set:{
-                    orderStatus : 'canceled'
+                    paymentStatus : status
                 }
             })
             res(true)
@@ -175,22 +175,19 @@ exports.cancelOrder = (orderId, userId) => {
 }
 
 
-// exports.generateRazorpay = (orderId,amount)=>{
-//     return new Promise((resolve,reject)=>{
-//         orderId = orderId.toString();
-//         amount = parseInt(amount);
-//         const options = {
-//             amount: amount * 100, // amount in the smallest currency unit
-//             currency: "INR",
-//             receipt: orderId,
-//         }
-//         instance.orders.create(options, function (err, order) {
-//             if (order) {
-//               console.log("NEW ORDER");
-//               resolve(order);
-//             } else {
-//               console.log("ERROR", err);
-//             }
-//           });
-//     })
-// }
+exports.updateOrder = (orderId, status) => {
+    return new Promise(async(res, rej) => {
+        try {
+            await orderModel.findByIdAndUpdate({_id:orderId},{
+                $set:{
+                    orderStatus : status
+                }                
+            })
+            res(true)
+        } catch (err) {
+            rej(err)
+        }
+    })
+}
+
+

@@ -337,12 +337,22 @@ exports.orderSuccess = (req, res) => {
     if (req.session.orderId) {
         res.render('users/order_success', { user: true, login: true, order: req.session.orderId })
         req.session.orderId = false
+        req.session.coupon = null
     }
 }
 
 // Payment failed page
-exports.paymentFail = (req, res) => {
-    res.render('users/payment_failed', { user: true, login: true })
+exports.paymentFail = (req, res, next) => {
+    orderHelper.updatePaymentStatus(req.session.orderId, "Failed").then(() => {
+        orderHelper.updateOrder(req.session.orderId, "Failed").then(() => {
+            req.session.coupon = null
+            res.render('users/payment_failed', { user: true, login: true })
+        }).catch((err) => {
+            next(err)
+        })
+    }).catch((err) => {
+        next(err)
+    })
 }
 
 // Place an order
@@ -391,7 +401,7 @@ exports.orderDetails = (req, res, next) => {
 
 // Cancel an order
 exports.cancelOrder = (req, res, next) => {
-    orderHelper.cancelOrder(req.params.id, req.session.user._id).then((response) => {
+    orderHelper.updateOrder(req.params.id, "cancelled").then((response) => {
         res.json(response)
     }).catch((err) => {
         next(err)

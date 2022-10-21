@@ -218,31 +218,70 @@ function deleteCoupon(couponId) {
 }
 
 function packOrder(orderId) {
-    $.ajax({
-        url: '/admin/pack_order' + orderId,
-        method: 'patch',
-        success: (response) => {
-            $("#ordersRefresh").load(location.href + " #ordersRefresh")
+    swal({
+        title: "Pack this order ?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+            $.ajax({
+                url: '/admin/pack_order/' + orderId,
+                method: 'patch',
+                success: (response) => {
+                    swal("Order packed & is waiting for shipping", {
+                        icon: "success",
+                      });
+                    $("#userTable").load(location.href + " #userTable")
+                }
+            })
         }
-    })
+      });
 }
 
-function shipOrder() {
-    $.ajax({
-        url: '/admin/ship_order' + orderId,
-        method: 'patch',
-        success: (response) => {
-            $("#ordersRefresh").load(location.href + " #ordersRefresh")
+function shipOrder(orderId) {
+    swal({
+        title: "Ship this order ?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+            $.ajax({
+                url: '/admin/ship_order/' + orderId,
+                method: 'patch',
+                success: (response) => {
+                    swal("Order shipped successfully", {
+                        icon: "success",
+                      });
+                    $("#userTable").load(location.href + " #userTable")
+                }
+            })
         }
-    })
+      });
 }
 
-function deliverOrder() {
-    $.ajax({
-        url: '/admin/deliver_order' + orderId,
-        method: 'patch',
-        success: (response) => {
-            $("#ordersRefresh").load(location.href + " #ordersRefresh")
+function deliverOrder(orderId) {
+    swal({
+        title: "Deliver this order ?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+            $.ajax({
+                url: '/admin/deliver_order/' + orderId,
+                method: 'patch',
+                success: (response) => {
+                    swal("Order delivered & payment collected", {
+                        icon: "success",
+                      });
+                    $("#userTable").load(location.href + " #userTable")
+                }
+            })
         }
-    })
+      });
 }

@@ -93,5 +93,21 @@ router
       .route('/orders')
       .get(middleware.loginCheck,adminController.orders)
 
+router
+      .route('/pack_order/:id')
+      .patch(middleware.loginCheck,adminController.packOrder)
+
+router
+      .route('/ship_order/:id')
+      .patch(middleware.loginCheck,adminController.shipOrder)
+
+router
+      .route('/deliver_order/:id')
+      .patch(middleware.loginCheck,adminController.deliverOrder)
+
+router
+      .route('/order_details/:id')
+      .get(middleware.loginCheck,adminController.orderDetails)
+
 
 module.exports = router;

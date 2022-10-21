@@ -305,8 +305,28 @@ exports.viewAllOrders = () => {
     return new Promise(async(res, rej) => {
         try {
             const orders = await orderModel.find().populate('userId').lean()
-            console.log(orders);
             res(orders)
+        } catch (err) {
+            rej(err)
+        }
+    })
+}
+
+exports.orderDetails = (orderId) => {
+    return new Promise(async (res, rej) => {
+        try {
+            const response = {}
+            const userId = (await orderModel.findOne({_id:orderId})).userId
+            const user = await userModel.findOne({ _id: userId }).lean()
+            response.orderData = await orderModel.findOne({ _id: orderId }).populate("products.product").lean()
+            const addressIdFromOrder = response.orderData.address.toString()
+            for (let i = 0; i < user.address.length; i++) {
+                if (user.address[i]._id == addressIdFromOrder) {
+                    response.address = user.address[i];
+                    break;
+                }
+            }
+            res(response)
         } catch (err) {
             rej(err)
         }
