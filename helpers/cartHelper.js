@@ -1,6 +1,8 @@
 const userModel = require('../models/userModel');
 const productModel = require('../models/productModel')
 
+
+// Get user's cart data
 exports.userCart = (userId) => {
     try {
         return new Promise(async (res, rej) => {
@@ -22,6 +24,7 @@ exports.userCart = (userId) => {
     }
 }
 
+// Count number of products in the cart
 exports.cartCount = (userId) => {
     return new Promise(async (res, rej) => {
         try {
@@ -34,6 +37,7 @@ exports.cartCount = (userId) => {
     })
 }
 
+// Add a product to cart
 exports.addToCart = (userId, productId) => {
     return new Promise(async (res, rej) => {
         try {
@@ -79,7 +83,7 @@ exports.addToCart = (userId, productId) => {
     })
 }
 
-
+// Delete a product from cart
 exports.deleteFromCart = (userId, productID) => {
     return new Promise(async (res, rej) => {
         try {
@@ -98,6 +102,7 @@ exports.deleteFromCart = (userId, productID) => {
     })
 }
 
+// Update quality of a product in cart
 exports.updateCart = (userId, update) => {
     return new Promise(async (res, rej) => {
         try {
@@ -121,10 +126,7 @@ exports.updateCart = (userId, update) => {
                             $inc: { "cart.$.quantity": update.change }
                         })
                         response.success = true
-                    }
-                    // console.log("Product quantity changed");
-                    // const quantity = (await userModel.findOne({ _id: userId, "cart.product": update.productId })).cart[0].quantity
-                    // res(quantity)
+                    }                   
                 } catch (err) {
                     rej(err)
                 }

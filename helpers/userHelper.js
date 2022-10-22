@@ -81,6 +81,7 @@ exports.login_check = (body) => {
     })
 }
 
+//Verify entered otp
 exports.otpCheck = (mobile, otp) => {
     return new Promise(async (resolve, reject) => {
         try {

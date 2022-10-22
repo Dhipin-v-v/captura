@@ -1,6 +1,7 @@
 const productModel = require('../models/productModel')
 const userModel = require('../models/userModel')
 
+// Get wishlist data of specific user
 exports.userWishlist = (userId) => {
     return new Promise(async (res, rej) => {
         try {
@@ -12,6 +13,7 @@ exports.userWishlist = (userId) => {
     })
 }
 
+// Add a new product to wishlist
 exports.addToWishlist = (userId, productId) => {
     return new Promise(async (res, rej) => {
         try {
@@ -44,6 +46,7 @@ exports.addToWishlist = (userId, productId) => {
     })
 }
 
+// Delete a product from wishlist
 exports.deleteFromWishlist = (userId, productId) => {
     return new Promise(async(res,rej) => {
         try {

@@ -3,11 +3,13 @@ const productModel = require('../models/productModel')
 const orderModel = require('../models/orderModel')
 const Razorpay = require('razorpay')
 
+// Razorpay instance
 var instance = new Razorpay({
     key_id: process.env.KEY_ID,
     key_secret: process.env.SECRET_KEY,
 });
 
+// Insert order data to database
 exports.placeOrder = (body, userId, couponData) => {
     const paymentMode = body.payment == 'cod' ? 'Cash On Delivery' : 'Pre-paid'
     const paymentStatus = body.payment == 'cod' ? 'In progress' : 'Pending'
@@ -68,6 +70,7 @@ exports.placeOrder = (body, userId, couponData) => {
     })
 }
 
+// Get details of every orders
 exports.getAllOrders = (userId) => {
     return new Promise(async (res, rej) => {
         try {
@@ -79,6 +82,7 @@ exports.getAllOrders = (userId) => {
     })
 }
 
+// Get details of a specific order
 exports.orderDetails = (orderId, userId) => {
     return new Promise(async (res, rej) => {
         try {
@@ -99,6 +103,7 @@ exports.orderDetails = (orderId, userId) => {
     })
 }
 
+// Generate razorpay for the given amount
 exports.generateRazorpay = (orderId, userId) => {
     return new Promise(async (res, rej) => {
         try {
@@ -119,6 +124,7 @@ exports.generateRazorpay = (orderId, userId) => {
     })
 }
 
+// Razorpay verification
 exports.verifyPayment = (paymentDetails) => {
     return new Promise((res, rej) => {
         try {
@@ -137,6 +143,7 @@ exports.verifyPayment = (paymentDetails) => {
     })
 }
 
+// Change payment status and delete the product from cart
 exports.changeOrderStatus = (orderId, userId) => {
     return new Promise(async (res, rej) => {
         try {
@@ -159,6 +166,7 @@ exports.changeOrderStatus = (orderId, userId) => {
     })
 }
 
+// Change payment status of the order
 exports.updatePaymentStatus = (orderId, status) => {
     return new Promise(async(res, rej) => {
         try {
@@ -174,7 +182,7 @@ exports.updatePaymentStatus = (orderId, status) => {
     })
 }
 
-
+// Change order status
 exports.updateOrder = (orderId, status) => {
     return new Promise(async(res, rej) => {
         try {

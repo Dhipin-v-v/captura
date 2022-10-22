@@ -313,6 +313,7 @@ exports.viewAllOrders = () => {
     })
 }
 
+// Get details of a specific order
 exports.orderDetails = (orderId) => {
     return new Promise(async (res, rej) => {
         try {
@@ -334,6 +335,7 @@ exports.orderDetails = (orderId) => {
     })
 }
 
+// Get sales report
 exports.salesReport = () => {
     return new Promise(async (res, rej) => {
         try {
