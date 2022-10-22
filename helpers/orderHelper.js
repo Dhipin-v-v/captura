@@ -35,6 +35,7 @@ exports.placeOrder = (body, userId, couponData) => {
 
         if (couponData) {
             discount = (couponData.discountPercent / 100) * subtotal
+            discount = Math.floor(discount);
             coupon = couponData.couponCode
         } else {
             discount = 0
