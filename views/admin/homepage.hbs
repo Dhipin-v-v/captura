@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Product Admin - Dashboard HTML Template</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    <!-- https://fonts.google.com/specimen/Roboto -->
+    <link rel="stylesheet" href="/admin_files/css/fontawesome.min.css">
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="/admin_files/css/bootstrap.min.css">
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="/admin_files/css/templatemo-style.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!--
+	Product Admin CSS Template
+	https://templatemo.com/tm-524-product-admin
+	-->
+</head>
+
+<body id="reportsPage">
+    <div class="" id="home">
+        <nav class="navbar navbar-expand-xl">
+            <div class="container h-100">
+                <a class="navbar-brand" href="/admin">
+                    <h1 class="tm-site-title mb-0">Captura Admin</h1>
+                </a>
+                <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <i class="fas fa-bars tm-nav-icon"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto h-100">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/admin">
+                                <i class="fas fa-tachometer-alt"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/products">
+                                <i class="fas fa-cart-plus"></i> Products
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/users">
+                                <i class="fas fa-users"></i> Users
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/category">
+                                <i class="fas fa-list"></i> Categories
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/coupon">
+                                <i class="fas fa-tag"></i> Coupons
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/orders">
+                                <i class="fas fa-shopping-cart"></i> Orders
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link d-block" href="/admin/logout">
+                                Admin, <b>Logout</b>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div style="min-height: 100vh;" class="container mt-5">
+            <div class="row tm-content-row">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
+                    <div style="min-height: 1050px;" class="tm-bg-primary-dark tm-block tm-block-products">
+                        <div style="margin-top: 50px; margin-bottom: 110px;" class="row">
+                            <div class="col-12 col-lg-5 m-1">
+                                <div class="card radius-15 bg-voilet">
+                                    <div class="card-body" style="background-color:#5bec69 ; opacity: 100%;">
+                                        <div class="d-flex align-items-center">
+                                            <div>
+                                                <h2 class="mb-0 text-white" id="orders"><i
+                                                        class='bx bxs-up-arrow-alt font-14 text-white'></i> </h2>
+                                            </div>
+                                            <div class="ms-auto font-35 text-white"><i class="bx bx-cart-alt"></i>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <div>
+                                                <p class="mb-0 text-white">Orders Delivered</p>
+                                            </div>
+                                            {{!-- <div class="ms-auto font-14 text-white">+23.4%</div> --}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-5 m-1">
+                                <div class="card radius-15 bg-primary-blue">
+                                    <div class="card-body" style="background-color:#448cc6 ; opacity: 100%;">
+                                        <div class="d-flex align-items-center">
+                                            <div class="d-flex">
+                                                <h2 class="mb-0 text-white">₹&nbsp;</h2>
+                                                <h2 class="mb-0 text-white" id="profit"><i
+                                                        class='bx bxs-down-arrow-alt font-14 text-white'></i> </h2>
+                                            </div>
+                                            <div class="ms-auto font-35 text-white"><i class="bx bx-support"></i>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <div>
+                                                <p class="mb-0 text-white">Profit</p>
+                                            </div>
+                                            {{!-- <div class="ms-auto font-14 text-white">+14.7%</div> --}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-5 m-1">
+                                <div class="card radius-15 bg-rose">
+                                    <div class="card-body" style="background-color: #de312ee9; opacity: 100%;">
+                                        <div class="d-flex align-items-center">
+                                            <div>
+                                                <h2 class="mb-0 text-white" id="users"><i
+                                                        class='bx bxs-up-arrow-alt font-14 text-white'></i> </h2>
+                                            </div>
+                                            <div class="ms-auto font-35 text-white"><i class="bx bx-tachometer"></i>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <div>
+                                                <p class="mb-0 text-white">Users</p>
+                                            </div>
+                                            {{!-- <div class="ms-auto font-14 text-white">-12.9%</div> --}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-5 m-1">
+                                <div class="card radius-15 bg-sunset">
+                                    <div class="card-body" style="background-color: #18765f;">
+                                        <div class="d-flex align-items-center">
+                                            <div>
+                                                <h2 class="mb-0 text-white" id="products"><i
+                                                        class='bx bxs-up-arrow-alt font-14 text-white'></i> </h2>
+                                            </div>
+                                            <div class="ms-auto font-35 text-white"><i class="bx bx-user"></i>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <div>
+                                                <p class="mb-0 text-white">Products</p>
+                                            </div>
+                                            {{!-- <div class="ms-auto font-14 text-white">+13.6%</div> --}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-center text-white m-4"><u>Total Sales</u></h3>
+                        </div>
+
+                        <div style="background-color: #ffffffd4;">
+                            <canvas id="myChart" style="width:100%;max-width:1000px"></canvas>
+                        </div>
+                        <script>
+                            window.addEventListener('load', (event))
+                            $.ajax({
+                                url: '/admin/sales-report',
+                                method: 'get',
+                                success: ((response) => {
+                                    document.getElementById('orders').innerHTML = response.noOfOrders;
+                                    document.getElementById('users').innerHTML = response.noOfUsers;
+                                    document.getElementById('profit').innerHTML = response.totalProfit;
+                                    document.getElementById('products').innerHTML = response.noOfProducts;
+                                    var xValues = [
+                                        response.dateList[9],
+                                        response.dateList[8],
+                                        response.dateList[7],
+                                        response.dateList[6],
+                                        response.dateList[5],
+                                        response.dateList[4],
+                                        response.dateList[3],
+                                        response.dateList[2],
+                                        response.dateList[1],
+                                        response.dateList[0]]
+                                    new Chart("myChart", {
+                                        type: "line",
+                                        data: {
+                                            labels: xValues,
+                                            datasets: [{
+                                                data: [response.dateSales[9],
+                                                response.dateSales[8],
+                                                response.dateSales[7],
+                                                response.dateSales[6],
+                                                response.dateSales[5],
+                                                response.dateSales[4],
+                                                response.dateSales[3],
+                                                response.dateSales[2],
+                                                response.dateSales[1],
+                                                response.dateSales[0],
+                                                ],
+                                                backgroundColor: "grey",
+                                                borderColor: "blue",
+                                                fill: true,
+                                            }
+                                            ]
+                                        },
+                                        options: {
+                                            legend: {display: false}
+                                        }
+                                    });
+                                })
+                            })
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="tm-footer row tm-mt-small">
+            <div class="col-12 font-weight-light">
+            </div>
+        </footer>
+    </div>
+
+    <script src="/admin_files/js/jquery-3.3.1.min.js"></script>
+    <!-- https://jquery.com/download/ -->
+    <script src="/admin_files/js/moment.min.js"></script>
+    <!-- https://momentjs.com/ -->
+    <script src="/admin_files/js/Chart.min.js"></script>
+    <!-- http://www.chartjs.org/docs/latest/ -->
+    <script src="/admin_files/js/bootstrap.min.js"></script>
+    <!-- https://getbootstrap.com/ -->
+    <script src="/admin_files/js/tooplate-scripts.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Product Page - Admin HTML Template</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700" />
+    <!-- https://fonts.google.com/specimen/Roboto -->
+    <link rel="stylesheet" href="/admin_files/css/fontawesome.min.css" />
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="/admin_files/css/bootstrap.min.css" />
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="/admin_files/css/templatemo-style.css">
+
+    <!--
+	Product Admin CSS Template
+	https://templatemo.com/tm-524-product-admin
+	-->
+</head>
+
+<body id="reportsPage">
+    <nav class="navbar navbar-expand-xl">
+        <div class="container h-100">
+            <a class="navbar-brand" href="/admin">
+                <h1 class="tm-site-title mb-0">Captura Admin</h1>
+            </a>
+            <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars tm-nav-icon"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto h-100">
+                    {{!-- <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li> --}}
+                    {{!-- <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="far fa-file-alt"></i>
+                            <span> Reports <i class="fas fa-angle-down"></i> </span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Daily Report</a>
+                            <a class="dropdown-item" href="#">Weekly Report</a>
+                            <a class="dropdown-item" href="#">Yearly Report</a>
+                        </div>
+                    </li> --}}
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin">
+                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/products">
+                            <i class="fas fa-cart-plus"></i> Products
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/users">
+                            <i class="fas fa-users"></i> Users
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/category">
+                            <i class="fas fa-list"></i> Categories
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/coupon">
+                            <i class="fas fa-tag"></i> Coupons
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/admin/orders">
+                            <i class="fas fa-shopping-cart"></i> Orders
+                        </a>
+                    </li>
+
+                    {{!-- <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-cog"></i>
+                            <span> Settings <i class="fas fa-angle-down"></i> </span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Profile</a>
+                            <a class="dropdown-item" href="#">Billing</a>
+                            <a class="dropdown-item" href="#">Customize</a>
+                        </div>
+                    </li> --}}
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link d-block" href="/admin/logout">
+                            Admin, <b>Logout</b>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+      <div class="row tm-content-row">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
+          <div class="tm-bg-primary-dark tm-block tm-block-products">
+            <div id="userTable" style="min-height: 600px;" class="tm-product-table-container">
+              <div class="card" style="background-color: #4e657a;">
+                        <div id="" class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <p class="small text-white mb-0">Order ID : {{order._id}}</p>
+                                <h2 class="text-white text-uppercase">{{order.orderStatus}}</h2>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <p class="small text-white mb-0">Order date : {{order.date}}</p>
+                            </div>
+                            <div>
+                                {{#each order.products}}
+                                <div style="background-color:#435c70;" class=" card shadow-0 border mb-4">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <img src="/images/products/{{this.product.images.[0]}}"
+                                                    class="img-fluid" alt="Phone">
+                                            </div>
+                                            <div class="col-md-6 d-flex align-items-center">
+                                                <p class="text-white mb-0">{{this.product.name}}</p>
+                                            </div>
+                                            <div class="col-md-2 d-flex align-items-center">
+                                                <p class="text-white mb-0 small">Qty: {{this.quantity}}</p>
+                                            </div>
+                                            <div class="col-md-2 d-flex align-items-center">
+                                                <p class="text-white mb-0 small">₹ {{this.pricePerItem}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{/each}}
+                            </div>
+                            {{!-- {{/each}} --}}
+
+                            <div class="d-flex justify-content-between pt-2">
+                                <p class="text-white mb-0"><span class="fw-bold me-4"></span></p>
+                                <p class="text-white mb-0"><span
+                                        class="fw-bold me-4">Subtotal:</span>₹{{order.subtotal}}.00</p>
+                            </div>
+
+                            <div class="d-flex justify-content-between pt-2">
+                                <p class="text-white mb-0"><span class="fw-bold me-4">Shipping address:</span></p>
+                            </div>
+
+                            <div class="d-flex justify-content-between  ">
+                                <p class="text-white mb-0">{{address.name}}, {{address.house}},</p>
+                                {{#if order.coupon}}
+                                <p class="text-white mb-0"><span class="fw-bold me-4">Coupon used</span>{{order.coupon}}
+                                </p>
+                                {{/if}}
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <p class="text-white mb-0">{{address.locality}}, {{address.area}},</p>
+                                <p class="text-white mb-0"><span class="fw-bold me-4">Coupon discount</span>
+                                    ₹{{order.discount}}.00</p>
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-5">
+                                <p class="text-white mb-0">{{address.landmark}}, {{address.pincode}}</p>
+                                <p class="text-white mb-0"><span class="fw-bold me-4">Delivery
+                                        Charges</span> ₹50.00</p>
+                            </div>
+                            <div class="d-flex justify-content-between mb-5">
+                                <p class="text-white mb-0"></p>
+                                <p class="small text-white mb-0">Payment mode: {{order.paymentMethod}}</p>
+                            </div>
+                        </div>
+                        <div style="background-color:#435c70;" class="card-footer border-0 px-4 py-5"
+                            style="background-color: #c5c5c5; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+                            <h5 class="d-flex align-items-center justify-content-end text-white text-uppercase mb-0">
+                                Total
+                                amount: <span class="h2 mb-0 ms-2">₹{{order.net}}.00</span></h5>
+                        </div>
+                    </div>
+            </div>
+            <!-- table container -->
+          </div>
+        </div>        
+      </div>
+    </div>
+    
+    <footer class="tm-footer row tm-mt-small">
+    </footer>
+
+    <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content2">
+                <div class="modal-header2">
+                    <h5 class="modal-title text-white" id="exampleModalLabel">Add new category</h5>
+                </div>
+                <div class="modal-body">
+                    {{!-- <form action="/admin/category" method="post"> --}}
+                        <div class="form-group">
+                            <input id="addCategoryInput" required name="category" style="background-color: #4e657a;"
+                                type="text" class="form-control" id="recipient-name">
+                        </div>
+                </div>
+                <div class="modal-footer2">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button onclick="addCategory()" data-dismiss="modal" type="button" class="btn btn-primary">Add
+                    </button>
+                </div>
+                {{!-- </form> --}}
+            </div>
+        </div>
+    </div>
+    </script>
+
+    <script src="/admin_files/js/jquery-3.3.1.min.js"></script>
+    <!-- https://jquery.com/download/ -->
+    <script src="/admin_files/js/bootstrap.min.js"></script>
+    <!-- https://getbootstrap.com/ -->
+
+</body>
+
+</html>

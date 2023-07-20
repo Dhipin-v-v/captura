@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Captura-The camera store</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+
+    <!-- Font CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap"
+        rel="stylesheet">
+
+    <!-- Vendor CSS (Bootstrap & Icon Font) -->
+    <link rel="stylesheet" href="/user_files/css/vendor/bootstrap.min.css">
+
+    <!-- Plugins CSS (All Plugins Files) -->
+    <link rel="stylesheet" href="/user_files/css/plugins/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/user_files/css/plugins/font-awesome.min.css">
+    <link rel="stylesheet" href="/user_files/css/plugins/simple-line-icons.css">
+    <link rel="stylesheet" href="/user_files/css/plugins/fancybox.min.css">
+    <link rel="stylesheet" href="/user_files/css/plugins/nice-select.css">
+    <link rel="stylesheet" href="/user_files/css/plugins/range-slider.css">
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="/user_files/css/style.css">
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="header-area d-lg-block">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                    </div>
+                    <div class="col-auto d-lg-block ms-auto me-n3 pe-0">
+                        <div class="header-navigation ps-6">
+                            <ul class="main-nav">
+                                <li class="main-nav-item"><a class="main-nav-link" href="/shop_by_category/1">Shop by
+                                        category</a></li>
+                                <li class="main-nav-item"><a class="main-nav-link" href=>Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+        </header>
+        <!--== End Header Wrapper ==-->
+        <main class="main-content">
+            <!--== Start Page Header Area Wrapper ==-->
+            <div class="page-header-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="page-header-content">
+                                <h2 class="page-header-title">Home</h2>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="page-header-thumb">
+                                <img src="/images/page-title.png" alt="Image-HasTech" width="546"
+                                    height="281">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--== End Page Header Area Wrapper ==-->
+
+            <!--== Start Product Filter Area Wrapper ==-->
+            <div class="product-area section-two-space">
+                <div class="container">
+                    <div class="masonry-filter-menu text-center mb-8">
+                        <h4 class="single-comment-name">ALL PRODUCTS</h4>
+                    </div>
+
+                    <div class="row masonryGrid mb-n6">
+                        {{#if login}}
+                        {{#each products}}
+                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-6 masonry-item">
+                            <!--== Start Product Item ==-->
+                            <div class="product-item">
+                                <a class="product-item-thumb" href="/product/{{this._id}}">
+                                    <img src="images/products/{{this.images.[0]}}" width="268" height="256"
+                                        alt="Image-HasTech">
+                                </a>
+                                <div class="product-item-action product-item-action--two">
+                                    {{!-- <a href="/add_to_wishlist/{{this._id}}"> --}}
+                                        <button onclick="addToWishlist('{{this._id}}')" type="button" class="product-action-btn action-btn-wishlist">
+                                            <i class="icon-heart"></i>
+                                        </button>
+                                    {{!-- </a> --}}
+                                </div>
+                                <div class="product-item-info text-center bg-white pb-6">
+                                    <div style="height: 6em;" class="align-text-bottom">
+                                        <h5 class="product-item-title"><a href="/product/{{this._id}}">{{this.name}}</a>
+                                        </h5>
+                                    </div>
+                                    <div class="product-item-price">₹{{this.selling}}</div>
+                                    {{#if (eq this.stock 0)}}
+                                        <button class="out-of-stock-btn">Out of stock</button>
+                                    {{else}}
+                                         <div>
+                                            <button onclick="addToCart('{{this._id}}')" class="product-detail-cart-btn"
+                                                type="button">Add to cart</button>
+                                        </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                        {{else}}
+                        {{#each products}}
+                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-6 masonry-item">
+                            <!--== Start Product Item ==-->
+                            <div class="product-item">
+                                <a class="product-item-thumb" href="/product/{{this._id}}">
+                                    <img src="images/products/{{this.images.[0]}}" width="268" height="256"
+                                        alt="Image-HasTech">
+                                </a>
+                                <div class="product-item-action product-item-action--two">
+                                    <a href="/login">
+                                        <button type="button" class="product-action-btn action-btn-wishlist">
+                                            <i class="icon-heart"></i>
+                                        </button>
+                                    </a>
+                                </div>
+                                <div class="product-item-info text-center bg-white pb-6">
+                                    <div style="height: 6em;" class="align-text-bottom">
+                                        <h5 class="product-item-title"><a href="/product/{{this._id}}">{{this.name}}</a>
+                                        </h5>
+                                    </div>
+                                    <div class="product-item-price">₹{{this.selling}}</div>
+                                    {{#if (eq this.stock 0)}}
+                                        <button class="out-of-stock-btn">Out of stock</button>
+                                    {{else}}
+                                         <div>
+                                            <button class="product-detail-cart-btn" type="button">
+                                            <a href="/login">Add to cart</a>
+                                        </button>
+                                        </div>
+                                    {{/if}}                                    
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                        {{/if}}
+                    </div>
+
+
+
+
+                </div>
+            </div>
+    </div>
+    </div>
+    <!--== End Product Filter Area Wrapper ==-->
+
+    </main>
+
+
+    <!--== Start Footer Area Wrapper ==-->
+    <footer class="footer-area">
+        <div class="container">
+            <div class="footer-bottom">
+            </div>
+        </div>
+    </footer>
+
+    <!--== End Footer Area Wrapper ==-->
+    <!-- Vendors JS -->
+    <script src="/user_files/js/vendor/modernizr-3.11.7.min.js"></script>
+    <script src="/user_files/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="/user_files/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+    <script src="/user_files/js/vendor/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugins JS -->
+    <script src="/user_files/js/plugins/swiper-bundle.min.js"></script>
+    <script src="/user_files/js/plugins/fancybox.min.js"></script>
+    <script src="/user_files/js/plugins/jquery.nice-select.min.js"></script>
+    <script src="/user_files/js/plugins/jquery.countdown.min.js"></script>
+    <script src="/user_files/js/plugins/isotope.pkgd.min.js"></script>
+    <script src="/user_files/js/plugins/range-slider.js"></script>
+
+    <!-- Custom Main JS -->
+    <script src="/user_files/js/main.js"></script>
+
+</body>
+
+
+<!-- Mirrored from htmldemo.net/elehaus/elehaus/shop.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 13:41:36 GMT -->
+
+</html>

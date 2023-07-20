@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+
+<!-- Mirrored from htmldemo.net/elehaus/elehaus//login by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 13:41:36 GMT -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Login / Signup to Captura</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png">
+
+    <!-- CSS (Font, Vendor, Icon, Plugins & Style CSS files) -->
+
+    <!-- Font CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap"
+        rel="stylesheet">
+
+    <!-- Vendor CSS (Bootstrap & Icon Font) -->
+    <link rel="stylesheet" href="/user_files/css/vendor/bootstrap.min.css">
+
+    <!-- Plugins CSS (All Plugins Files) -->
+    <link rel="stylesheet" href="/user_files/css/plugins/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/user_files/css/plugins/font-awesome.min.css">
+    <link rel="stylesheet" href="/user_files/css/plugins/simple-line-icons.css">
+    <link rel="stylesheet" href="/user_files/css/plugins/fancybox.min.css">
+    <link rel="stylesheet" href="/user_files/css/plugins/nice-select.css">
+    <link rel="stylesheet" href="/user_files/css/plugins/range-slider.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="/user_files/css/style.css">
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="header-area d-none d-lg-block">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                    </div>
+                    <div class="col-auto d-none d-lg-block ms-auto me-n3 pe-0">
+                        <div class="header-navigation ps-6">
+                            <ul class="main-nav">
+                                <li class="main-nav-item"><a class="main-nav-link" href="/shop_by_category/1">Shop by
+                                        category</a></li>
+                                </li>
+                                <li class="main-nav-item"><a class="main-nav-link" href=>Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="header-action">
+                            <button class="btn-search-menu d-md-none" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#AsideOffcanvasSearch" aria-controls="AsideOffcanvasSearch">
+                                <span class="search-icon">
+                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" />
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </header>
+        <!--== End Header Wrapper ==-->
+
+        <!--== Start Page Header Area Wrapper ==-->
+        <div class="page-header-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="page-header-content">
+                            <h2 class="page-header-title">Signup</h2>
+                            <!-- <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html">Home //</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Login-Register</li>
+                                </ol> -->
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="page-header-thumb">
+                            <img src="/images/page-title.png" alt="Image-HasTech" width="546" height="281">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--== End Page Header Area Wrapper ==-->
+
+        <!--== Start Login Wrapper ==-->
+        <div class="login-register-area section-space">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="login-register-content">
+                            <div class="login-register-title mb-30">
+                                <h3>Signup</h3>
+                                <p>Please enter your details to sign up to captura. </p>
+                            </div>
+                            <div class="login-register-style login-register-pr">
+                                <form id="form" action="/signed_up" method="post" onsubmit="return formValidation()">
+                                    <div class="login-register-input">
+                                        <input type="text" name="name" placeholder="Name">
+                                    </div>
+                                    <div class="login-register-input">
+                                        <input type="email" name="email" placeholder="E-mail">
+                                    </div>
+                                    <div class="login-register-input">
+                                        <input maxlength="10" type="tel" name="mobile" placeholder="Mobile">
+                                    </div>
+                                    <div class="login-register-input">
+                                        <input type="password" name="password" placeholder="Password" id="password">
+                                    </div>
+                                    <div class="login-register-input">
+                                        <input type="password" name="rePassword" placeholder="Re-enter password">
+                                        {{#if reEnteredIncorrect}}
+                                        <p class="text-danger  mt-2 mx-2 fw-bold">Password not match</p>
+                                        {{/if}}
+                                        {{#if duplicateUser}}
+                                        <p class="text-danger  mt-2 mx-2 fw-bold">Email or mobile already in use. Try
+                                            again</p>
+                                        {{/if}}
+                                    </div>
+                                    <div id="display-error" class="text-danger mt-2 mx-2 fw-bold"></div>
+                                    <div class="btn-register">
+                                        <button type="submit" class="btn-register-now">SignUp</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--== End Login Wrapper ==-->
+
+        </main>
+
+
+        <!--Start Footer Area Wrapper ==-->
+        <footer class="footer-area">
+            <div class="container">
+
+            </div>
+        </footer>
+        <!--== End Footer Area Wrapper ==-->
+    </div>
+    <!--== Wrapper End ==-->
+    {{!--
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script> --}}
+
+
+    <script src="/user_files/js/vendor/modernizr-3.11.7.min.js"></script>
+    <script src="/user_files/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="/user_files/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+    <script src="/user_files/js/vendor/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugins JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
+
+    <!-- Custom Main JS -->
+    <script src="/user_files/js/main.js"></script>
+
+
+    
+    <script>
+
+        $("#form").validate({
+            rules: {
+                name: {
+                    required: true,
+                    lettersonly: true
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+                mobile: {
+                    required: true,
+                    digits: true,
+                    minlength: 10
+                },
+                password: {
+                    required: true,
+                    minlength: 6
+                },
+                rePassword: {
+                    equalTo: '#password'
+                }
+            },
+            messages: {
+                name: {
+                    required: 'Enter your name',
+                    lettersonly: 'Only characters allowed'
+                },
+                email: {
+                    required: 'Enter your email',
+                    email: 'Invalid email ID'
+                },
+                mobile: {
+                    required: 'Enter your mobile number',
+                    digits: 'Enter numbers only',
+                    minlength: 'Less than 10 digits entered'
+                },
+                password: {
+                    required: 'Enter a password',
+                    minlength: 'Must have minimum of 6 characters'
+                },
+                rePassword: {
+                    equalTo: 'Password not match'
+                }
+            }
+
+        })
+
+
+    </script>
+    
+    {{!-- <script type="text/javascript">
+        function formValidation() {
+            var name = $("#name").val();
+            var email = $("#email").val();
+            var mobile = $("#mobile").val();
+            var rePassword = $("#rePassword").val();
+
+            if  (name == "") {
+                $("#display-error").show();
+                $("#display-error").text("Enter a name");
+                return false;
+            }
+            return true
+        }
+
+    </script> --}}
+
+    <!-- Vendors JS -->
+    <script src="/user_files/js/plugins/swiper-bundle.min.js"></script>
+    <script src="/user_files/js/plugins/fancybox.min.js"></script>
+    <script src="/user_files/js/plugins/jquery.nice-select.min.js"></script>
+    <script src="/user_files/js/plugins/jquery.countdown.min.js"></script>
+    <script src="/user_files/js/plugins/isotope.pkgd.min.js"></script>
+
+</body>
+
+
+<!-- Mirrored from htmldemo.net/elehaus/elehaus//login by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 13:41:36 GMT -->
+
+</html>
