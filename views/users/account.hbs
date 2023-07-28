@@ -58,7 +58,7 @@
                             <ul class="main-nav">
                                 <li class="main-nav-item"><a class="main-nav-link" href="/shop_by_category/1">Shop by
                                         category</a></li>
-                                <li class="main-nav-item"><a class="main-nav-link" href=>Contact</a>
+                                <li class="main-nav-item"><a target="_blank" class="main-nav-link" href="https://www.linkedin.com/in/dhipin">Contact</a>
                                 </li>
                             </ul>
                         </div>
@@ -124,12 +124,6 @@
                                         data-bs-target="#password" type="button" role="tab" aria-controls="#password"
                                         aria-selected="false">Change password</button>
 
-                                    {{!-- <button class="myaccount-nav-link" id="address-edit-tab" data-bs-toggle="tab"
-                                        data-bs-target="#address-edit" type="button" role="tab"
-                                        aria-controls="address-edit" aria-selected="false">address</button>
-                                    <button class="myaccount-nav-link" id="account-info-tab" data-bs-toggle="tab"
-                                        data-bs-target="#account-info" type="button" role="tab"
-                                        aria-controls="account-info" aria-selected="false">Account Details</button> --}}
                                     <a class="myaccount-nav-link" href="/logout">Logout</a>
                                 </nav>
                             </div>
@@ -150,32 +144,7 @@
                                     </div>
                                     <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
                                         <div class="myaccount-content">
-                                            <h3>Orders</h3>
-                                            {{!-- <table
-                                                class="myaccount-table table-responsive text-center table table-bordered">
-                                                <thead class="thead-light">
-                                                    <tr>
-                                                        <th>Order date</th>
-                                                        <th>No. of products</th>
-                                                        <th>Order amount</th>
-                                                        <th>Payment mode</th>
-                                                        <th></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {{#each orders}}
-                                                    <tr>
-                                                        <td>{{this.date}}</td>
-                                                        <td>{{arrayLen this.products}}</td>
-                                                        <td>₹{{this.net}}</td>
-                                                        <td>{{this.paymentMethod}}</td>
-                                                        <td><a href="/order_details/{{this._id}}"
-                                                                class="check-btn sqr-btn ">More details</a>
-                                                        </td>
-                                                    </tr>
-                                                    {{/each}}
-                                                </tbody>
-                                            </table> --}}
+                                            <h3>Orders</h3>                                            
                                             <table class="table">
                                                 <thead>
                                                     <tr>
@@ -290,8 +259,7 @@
             <div class="modal-content rounded-10">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Add a new address</h5>
-                    {{!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    --}}
+                   
                 </div>
                 <div class="modal-body">
                     <form id="addressForm">
@@ -336,8 +304,7 @@
             <div class="modal-content rounded-10">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Edit profile</h5>
-                    {{!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    --}}
+                   
                 </div>
                 <div class="modal-body">
                     <form id="profileForm">
@@ -367,6 +334,7 @@
     <footer class="footer-area">
         <div class="container">
             <div class="footer-bottom">
+                    <p class="copyright">Website owned by: <a target="_blank" href="https://www.linkedin.com/in/dhipin">Dhipin</a></p>
             </div>
         </div>
     </footer>
@@ -495,8 +463,5 @@
     <script src="/user_files/js/main.js"></script>
 
 </body>
-
-
-<!-- Mirrored from htmldemo.net/elehaus/elehaus/shop.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 13:41:36 GMT -->
 
 </html>

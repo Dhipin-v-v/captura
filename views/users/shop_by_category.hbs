@@ -44,13 +44,11 @@
                     <div class="col-auto d-lg-block ms-auto me-n3 pe-0">
                         <div class="header-navigation ps-6">
                             <ul class="main-nav">
-                                {{!-- <li class="main-nav-item active"><a class="main-nav-link" href="/">Home</a></li>
-                                --}}
                                 {{#each categories}}
                                 <li class="main-nav-item"><a class="main-nav-link"
                                         href="/shop_by_category/{{this._id}}">{{this.category}}</a></li>
                                 {{/each}}
-                                <li class="main-nav-item"><a class="main-nav-link" href=>Contact</a>
+                                <li class="main-nav-item"><a target="_blank" class="main-nav-link" href="https://www.linkedin.com/in/dhipin">Contact</a>
                                 </li>
                             </ul>
                         </div>
@@ -84,7 +82,7 @@
             <div class="product-area section-two-space">
                 <div class="container">
                     <div class="masonry-filter-menu text-center mb-8">
-                        {{!-- <h4 class="single-comment-name"></h4> --}}
+
                     </div>
 
                     <div class="row masonryGrid mb-n6">
@@ -98,11 +96,11 @@
                                         alt="Image-HasTech">
                                 </a>
                                 <div class="product-item-action product-item-action--two">
-                                    {{!-- <a href="/add_to_wishlist/{{this._id}}"> --}}
+                                
                                         <button onclick="addToWishlist('{{this._id}}')" type="button" class="product-action-btn action-btn-wishlist">
                                             <i class="icon-heart"></i>
                                         </button>
-                                    {{!-- </a> --}}
+         
                                 </div>
                                 <div class="product-item-info text-center bg-white pb-6">
                                     <div style="min-height: 6em;" class="align-text-bottom">
@@ -176,6 +174,7 @@
     <footer class="footer-area">
         <div class="container">
             <div class="footer-bottom">
+                    <p class="copyright">Website owned by: <a target="_blank" href="https://www.linkedin.com/in/dhipin">Dhipin</a></p>
             </div>
         </div>
     </footer>
@@ -198,8 +197,5 @@
     <script src="/user_files/js/main.js"></script>
 
 </body>
-
-
-<!-- Mirrored from htmldemo.net/elehaus/elehaus/shop.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 13:41:36 GMT -->
 
 </html>

@@ -46,7 +46,7 @@
                             <ul class="main-nav">
                                 <li class="main-nav-item"><a class="main-nav-link" href="/shop_by_category/1">Shop by
                                         category</a></li>  
-                                <li class="main-nav-item"><a class="main-nav-link" href=>Contact</a>
+                                <li class="main-nav-item"><a target="_blank" class="main-nav-link" href="https://www.linkedin.com/in/dhipin">Contact</a>
                                 </li>
                             </ul>
                         </div>
@@ -112,9 +112,7 @@
                                             <tbody>
                                                 {{#each data}}
                                                 <tr>
-                                                    {{!-- <td class="product-remove"><a href="/delete_from_wishlist/{{this.product._id}}">×</a></td> --}}
                                                     <td class="product-remove"><a onclick="deleteFromWishlist('{{this.product._id}}')" >×</a></td>
-                                                    {{!-- <td><button onclick="deleteFromWishlist('{{this.product._id}}')" type="button" class="btn-close">X</button></td> --}}
                                                     <td class="product-thumbnail">
                                                         <a href=""><img src="images/products/{{this.product.images.[0]}}" alt="Image"
                                                                 width="96" height="96"></a>
@@ -127,7 +125,6 @@
                                                         <span><i class="fa fa-check"></i> In Stock</span>
                                                     </td>
                                                     <td><button onclick="addToCart('{{this.product._id}}')" class="wishlist-cart2">Add to cart</button></td>
-                                                    {{!-- <td class="wishlist-cart"><a >Add to Cart</a></td> --}}
                                                 </tr>
                                                 {{/each}}
                                             </tbody>
@@ -152,8 +149,9 @@
 
     <!--== Start Footer Area Wrapper ==-->
     <footer class="footer-area">
-        <div class="container">
+       <div class="container">
             <div class="footer-bottom">
+                    <p class="copyright">Website owned by: <a target="_blank" href="https://www.linkedin.com/in/dhipin">Dhipin</a></p>
             </div>
         </div>
     </footer>
@@ -176,8 +174,4 @@
     <script src="/user_files/js/main.js"></script>
 
 </body>
-
-
-<!-- Mirrored from htmldemo.net/elehaus/elehaus/shop.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 13:41:36 GMT -->
-
 </html>
